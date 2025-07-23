@@ -36,3 +36,7 @@ Laravel 8.x
 jQuery 3.7.1.min.js  
 MySQL 8.0.26  
 Nginx 1.21.1  
+
+## ER図
+---
+<img width="531" height="662" alt="スクリーンショット 2025-07-24 1 40 46" src="https://github.com/user-attachments/assets/e41f7f74-f8d7-400d-ba44-322d7ffd85cd" />
