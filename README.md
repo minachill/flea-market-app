@@ -5,9 +5,9 @@
 ### Dockerビルド
 
 ```bash
-git clone [リポジトリのURL](https://github.com/minachill/flea-market-app/blob/main/README.md)
-cd flea-market-app
-docker-compose up -d --build
+git clone [リポジトリのURL](https://github.com/minachill/flea-market-app/blob/main/README.md)  
+cd flea-market-app  
+docker-compose up -d --build  
 ```
 
 ### Laravel環境構築
