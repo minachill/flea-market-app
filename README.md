@@ -31,10 +31,10 @@ phpMyAdmin： http://localhost:8080/
 ## 使用技術（実行環境）
 ---
 
-PHP 7.x  
+PHP 8.3  
 Laravel 8.x  
 jQuery 3.7.1.min.js  
-MySQL 8.0.26  
+MySQL 8.0.35  
 Nginx 1.21.1  
 
 ## ER図
