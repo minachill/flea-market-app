@@ -39,4 +39,5 @@ Nginx 1.21.1
 
 ## ER図
 ---
-<img width="531" height="662" alt="スクリーンショット 2025-07-24 1 40 46" src="https://github.com/user-attachments/assets/e41f7f74-f8d7-400d-ba44-322d7ffd85cd" />
+<img width="757" height="950" alt="スクリーンショット 2025-07-27 23 16 41" src="https://github.com/user-attachments/assets/f6812a32-e218-48fc-b9b0-9edb1659dbc4" />
+
