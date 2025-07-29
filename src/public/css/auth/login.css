@@ -1,0 +1,81 @@
+/* フォーム全般 */
+.form-group {
+    margin-bottom: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 22px;
+}
+
+/* メインコンテンツ */
+.site-main {
+    max-width: 500px;
+    margin: auto;
+    background: #fff;
+    padding: 40px;
+}
+
+/* 登録ボタン */
+.btn-submit {
+    display: block;
+    width: 100%;
+    background: #FF5555;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 60px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* 会員登録はこちら */
+.form-footer {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.form-footer a {
+    color: #0073CC;
+    text-decoration: none;
+}
+
+/* エラーメッセージ */
+.error {
+    color: #e74634;
+    font-size: 13px;
+    height: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #5F5F5F;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .register-container {
+        width: 680px;
+    }
+
+    .form-group input {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .site-main {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
