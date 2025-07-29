@@ -1,0 +1,39 @@
+/* 会員登録ページ専用 */
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 22px;
+}
+
+/* 登録ボタン */
+.btn-submit {
+    display: block;
+    width: 100%;
+    background: #ff5a5a;
+    color: #fff;
+    font-size: 16px;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background: #e94a4a;
+}
+
+/* ログインリンク */
+.login-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.login-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
