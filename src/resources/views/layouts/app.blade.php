@@ -14,6 +14,7 @@
         <div class="logo">
             <img src="{{ asset('img/logo.svg') }}" alt="COACHTECH">
         </div>
+        @yield('header')
     </header>
 
     <main class="site-main">
