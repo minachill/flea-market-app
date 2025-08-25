@@ -1,4 +1,4 @@
-# coachtechフリマ
+ # coachtechフリマ
 
 本アプリはユーザーが商品を出品・購入できるフリマアプリです。
 ユーザー登録、商品一覧・詳細表示、マイリスト管理、出品、購入手続きなどの機能を提供します。
@@ -53,7 +53,7 @@ php artisan db:seed
 
 ## ER図
 ---
-<img width="757" height="950" alt="ER図" src="https://github.com/user-attachments/assets/f6812a32-e218-48fc-b9b0-9edb1659dbc4" />
+<img width="757" height="991" alt="ER図" src="https://github.com/user-attachments/assets/e9134a29-f4c8-4237-9e28-f4f9956b9966" />
 
 ## 運用・保守
 - クライアントが運用・保守を行います。  
