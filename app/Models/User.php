@@ -36,6 +36,11 @@ class User extends Authenticatable
             return $this->hasMany(Like::class);
         }
 
+        public function likedItems()
+        {
+            return $this->belongsToMany(Item::class, 'likes')->withTimestamps();
+        }
+
         // 1人のユーザーは複数の購入履歴を持つ
         public function purchases()
         {

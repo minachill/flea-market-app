@@ -17,7 +17,7 @@ class ItemController extends Controller
 
         if (Auth::check() && $request->tab === 'mylist') {
             // ログイン中 & マイリストタブ
-            $items = Auth::user()->likedItems ?? collect([]); // likedItemsは後で実装
+            $items = Auth::user()->likedItems;
             $viewType = 'mylist';
         } else {
             // 未ログイン or おすすめタブ

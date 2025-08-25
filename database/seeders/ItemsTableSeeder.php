@@ -44,7 +44,7 @@ class ItemsTableSeeder extends Seeder
                 'cost' => 300,
                 'product_condition' => 3, // やや傷や汚れあり
                 'image' => 'items/Onion.jpg',
-                'is_sold' => false,
+                'is_sold' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
