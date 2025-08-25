@@ -15,6 +15,17 @@ class Item extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'name',
+        'brand_name',
+        'detail',
+        'cost',
+        'product_condition',
+        'image',
+        'is_sold',
+    ];
+
     // ユーザー（出品者）とのリレーション：ItemはUserに属する（多対1）
     public function user()
     {

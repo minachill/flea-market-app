@@ -21,9 +21,15 @@ class ItemController extends Controller
             $viewType = 'mylist';
         } else {
             // 未ログイン or おすすめタブ
-            // 今はダミーデータ、後でDBのItem::all()に変更
-            $items = Item::all();
-            $viewType = 'recommend';
+            if (Auth::check()) {
+                $items = Item::where(function ($query) {
+                    $query->whereNull('user_id')
+                        ->orWhere('user_id', '!=', Auth::id());
+                })->get();
+            } else {
+                $items = Item::all();
+            }
+            $viewType = 'recommended';
         }
 
         return view('items.index', compact('items', 'viewType'));
