@@ -10,8 +10,9 @@
 {{-- この画面専用のヘッダー --}}
 @section('header')
     {{-- 検索フォーム --}}
-    <form action="/" method="GET" class="search-form">
-        <input type="text" name="keyword" placeholder="なにをお探しですか？">
+    <form action="{{ route('items.index') }}" method="GET">
+        <input type="text" name="keyword" value="{{ request('keyword') }}" placeholder="なにをお探しですか？">
+        <button type="submit">検索</button>
     </form>
 
     {{-- ボタン類 --}}

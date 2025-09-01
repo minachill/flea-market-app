@@ -14,6 +14,11 @@ class ItemsTableSeeder extends Seeder
      */
     public function run()
     {
+        $dummyUser = \App\Models\User::where('email', 'dummy@example.com')->first();
+        if (!$dummyUser) {
+            throw new \Exception('ダミーユーザーが存在しません。UsersTableSeeder を先に実行してください。');
+        }
+
         DB::table('items')->insert([
             [
                 'name' => '腕時計',
@@ -23,6 +28,7 @@ class ItemsTableSeeder extends Seeder
                 'product_condition' => 1, // 良好
                 'image' => 'items/Clock.jpg',
                 'is_sold' => false,
+                'user_id' => $dummyUser->id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -34,6 +40,7 @@ class ItemsTableSeeder extends Seeder
                 'product_condition' => 2, // 目立った傷や汚れなし
                 'image' => 'items/Disk.jpg',
                 'is_sold' => false,
+                'user_id' => $dummyUser->id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -45,6 +52,7 @@ class ItemsTableSeeder extends Seeder
                 'product_condition' => 3, // やや傷や汚れあり
                 'image' => 'items/Onion.jpg',
                 'is_sold' => true,
+                'user_id' => $dummyUser->id, //
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -56,6 +64,7 @@ class ItemsTableSeeder extends Seeder
                 'product_condition' => 4, // 状態が悪い
                 'image' => 'items/Shoes.jpg',
                 'is_sold' => false,
+                'user_id' => $dummyUser->id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -67,6 +76,7 @@ class ItemsTableSeeder extends Seeder
                 'product_condition' => 1,
                 'image' => 'items/Laptop.jpg',
                 'is_sold' => false,
+                'user_id' => $dummyUser->id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -78,6 +88,7 @@ class ItemsTableSeeder extends Seeder
                 'product_condition' => 2,
                 'image' => 'items/Mic.jpg',
                 'is_sold' => false,
+                'user_id' => $dummyUser->id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -89,6 +100,7 @@ class ItemsTableSeeder extends Seeder
                 'product_condition' => 3,
                 'image' => 'items/Bag.jpg',
                 'is_sold' => true,
+                'user_id' => $dummyUser->id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -100,6 +112,7 @@ class ItemsTableSeeder extends Seeder
                 'product_condition' => 4,
                 'image' => 'items/Tumbler.jpg',
                 'is_sold' => false,
+                'user_id' => $dummyUser->id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -111,6 +124,7 @@ class ItemsTableSeeder extends Seeder
                 'product_condition' => 1,
                 'image' => 'items/CoffeeMill.jpg',
                 'is_sold' => false,
+                'user_id' => $dummyUser->id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -122,6 +136,7 @@ class ItemsTableSeeder extends Seeder
                 'product_condition' => 2,
                 'image' => 'items/Makeup.jpg',
                 'is_sold' => false,
+                'user_id' => $dummyUser->id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

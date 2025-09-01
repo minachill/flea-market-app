@@ -10,28 +10,39 @@ class ItemController extends Controller
 {
     public function index(Request $request)
     {
-        if ($request->tab === 'mylist' && !Auth::check()) {
-            // 未ログインでマイリストタブ指定ならログイン画面へ
-            return redirect()->route('login');
-        }
+        $keyword = $request->input('keyword');
 
-        if (Auth::check() && $request->tab === 'mylist') {
-            // ログイン中 & マイリストタブ
-            $items = Auth::user()->likedItems;
-            $viewType = 'mylist';
-        } else {
-            // 未ログイン or おすすめタブ
-            if (Auth::check()) {
-                $items = Item::where(function ($query) {
-                    $query->whereNull('user_id')
-                        ->orWhere('user_id', '!=', Auth::id());
-                })->get();
-            } else {
-                $items = Item::all();
+        if ($request->tab === 'mylist') {
+            if (!Auth::check()) {
+                return redirect()->route('login');
             }
+
+        // マイリスト（ログイン済み）＋検索
+            $query = Auth::user()->likedItems()->orderBy('created_at', 'desc');
+
+            if (!empty($keyword)) {
+                $query->where('name', 'like', '%' . $keyword . '%');
+            }
+
+            $items = $query->paginate(8)->withQueryString();
+            $viewType = 'mylist';
+
+        } else {
+        // 通常一覧（おすすめ）
+            $query = Item::query();
+
+            if (Auth::check()) {
+                $query->where('user_id', '!=', Auth::id());
+            }
+
+            if (!empty($keyword)) {
+                $query->where('name', 'like', '%' . $keyword . '%');
+            }
+
+            $items = $query->latest()->paginate(8)->withQueryString();
             $viewType = 'recommended';
         }
 
-        return view('items.index', compact('items', 'viewType'));
+        return view('items.index', compact('items', 'viewType', 'keyword'));
     }
 }
