@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('title', 'ログイン画面')
 
@@ -7,17 +7,17 @@
 @endpush
 
 @section('content')
-<div class="form-container">
-    <h2>ログイン</h2>
+<div class="login-page">
+    <h2 class="login-page__title">ログイン</h2>
 
-    <form method="POST" action="{{ route('login') }}" novalidate>
+    <form class="login-form" method="POST" action="{{ route('login') }}" novalidate>
         @csrf
 
         {{-- メールアドレス --}}
         <div class="form-group">
-            <label for="email">メールアドレス</label>
-            <input id="email" type="email" name="email" value="{{ old('email') }}" autofocus>
-            <div class="error">
+            <label class="form-group__label" for="email">メールアドレス</label>
+            <input class="form-group__input" id="email" type="email" name="email" value="{{ old('email') }}" autofocus>
+            <div class="form-group__error">
                 @error('email')
                     {{ $message }}
                 @enderror
@@ -26,9 +26,9 @@
 
         {{-- パスワード --}}
         <div class="form-group">
-            <label for="password">パスワード</label>
-            <input id="password" type="password" name="password">
-            <div class="error">
+            <label class="form-group__label" for="password">パスワード</label>
+            <input class="form-group__input"id="password" type="password" name="password">
+            <div class="form-group__error">
                 @error('password')
                     {{ $message }}
                 @enderror
@@ -37,11 +37,11 @@
 
         {{-- ログインボタン --}}
         <div class="form-group">
-            <button type="submit" class="btn-submit">ログインする</button>
+            <button type="submit" class="login-form__submit">ログインする</button>
         </div>
     </form>
 
-    <div class="form-footer">
+    <div class="login-page__register-link">
         <a href="{{ route('register') }}">会員登録はこちら</a>
     </div>
 </div>

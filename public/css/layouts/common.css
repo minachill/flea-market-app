@@ -1,7 +1,7 @@
 /* 全体のリセットと共通設定 */
 body {
     margin: 0;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
     background-color: #ffffff;
     color: #000000;
 }
@@ -9,12 +9,70 @@ body {
 /* ヘッダー */
 .site-header {
     background: #000;
-    padding: 16px 25px;
+    padding: 14px 25px;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* gap: 20px; */
+}
+
+.site-header__logo img {
+    height: 36px;
+    width: auto;
+    margin-right: 20px;
+}
+
+.site-header__search-form {
+    flex-grow: 1;
+    min-width: 0;
+    display: flex;
+    margin: 0 20px;
+    justify-content: center;
+}
+
+.site-header__search-form input {
+    width: 100%;
+    max-width: 600px;
+    padding: 8px 40px;
+    border-radius: 4px;
+    font-size: 24px;
+    color: #000;
+}
+
+/* 消すかも ※仕様にないボタンのため */
+/* .search-form button {
+    margin-left: 10px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    background: #fff;
+    color: #000;
+    border: none;
+} */
+
+.site-header__actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
     align-items: center;
 }
 
-.site-header .logo img {
-    height: 25px;
-    width: auto;
+.site-header__btn-nav {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 24px;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.site-header__btn-sell {
+    background: #fff;
+    color: #000;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    padding: 6px 25px;
+    text-decoration: none;
+    font-size: 24px;
 }

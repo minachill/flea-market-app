@@ -6,49 +6,20 @@
 <link rel="stylesheet" href="{{ asset('css/items/index.css') }}">
 @endpush
 
-
-{{-- この画面専用のヘッダー --}}
-@section('header')
-    {{-- 検索フォーム --}}
-    <form action="{{ route('items.index') }}" method="GET">
-        <input type="text" name="keyword" value="{{ request('keyword') }}" placeholder="なにをお探しですか？">
-        <button type="submit">検索</button>
-    </form>
-
-    {{-- ボタン類 --}}
-    <div class="header-actions">
-        @auth
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit">ログアウト</button>
-            </form>
-            <a href="/mypage">マイページ</a>
-            <a href="/sell" class="btn-sell">出品</a>
-        @endauth
-
-        @guest
-            <a href="{{ route('login') }}">ログイン</a>
-            <a href="{{ route('register') }}">会員登録</a>
-            <a href="{{ route('login') }}" class="btn-sell">出品</a>
-        @endguest
-    </div>
-</header>
-@endsection
-
 @section('content')
-<div class="container">
+<div class="item-index">
 
     {{-- タブメニュー --}}
-    <div class="tab-menu">
-        <a href="/" class="tab {{ $viewType === 'recommend' ? 'active' : '' }}">おすすめ</a>
+    <div class="item-index__tab-menu">
+        <a href="/" class="item-index__tab {{ $viewType === 'recommend' ? 'item-index__tab--active' : '' }}">おすすめ</a>
         @auth
         {{-- ログイン時 --}}
-            <a href="/?tab=mylist" class="tab {{ $viewType === 'mylist' ? 'active' : '' }}">マイリスト</a>
+            <a href="/?tab=mylist" class="item-index__tab {{ $viewType === 'mylist' ? 'item-index__tab--active' : '' }}">マイリスト</a>
         @endauth
 
         @guest
         {{-- 未ログイン時はログイン画面に遷移 --}}
-            <a href="{{ route('login') }}" class="tab">マイリスト</a>
+            <a href="{{ route('login') }}" class="item-index__tab">マイリスト</a>
         @endguest
     </div>
 
@@ -57,20 +28,20 @@
         @foreach($items as $item)
             <div class="item-card">
             {{-- 商品画像 + Soldラベル --}}
-                <div class="item-image-wrapper">
-                    <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" class="item-image">
+                <div class="item-card__image-wrapper">
+                    <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" class="item-card__image">
 
                 {{-- 購入済みならSoldを表示 --}}
                     @if($item->is_sold)
-                        <div class="sold-label">Sold</div>
+                        <div class="item-card__sold-label">Sold</div>
                     @endif
                 </div>
 
             {{-- 商品名 --}}
-                <p class="item-name">{{ $item->name }}</p>
+                <p class="item-card__name">{{ $item->name }}</p>
             </div>
         @endforeach
-</div>
+    </div>
 
 </div>
 @endsection
