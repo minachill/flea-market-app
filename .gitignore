@@ -14,3 +14,7 @@ yarn-error.log
 /.idea
 /.vscode
 .DS_Store
+# 秘密鍵など機密ファイルを除外
+*.pem
+*.key
+docker/mysql/data/*.pem
