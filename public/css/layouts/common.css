@@ -75,3 +75,46 @@ body {
     text-decoration: none;
     font-size: 24px;
 }
+
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .site-header {
+        padding: 14px 28px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .site-header {
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 16px;
+    }
+
+    .site-header__logo img {
+        height: 20px;
+    }
+
+    .site-header__search-form {
+        flex-grow: 1;
+        margin: 3px;
+        order: 2;
+    }
+
+    .site-header__search-form input {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+
+    .site-header__actions {
+        gap: 8px;
+        flex-wrap: nowrap;
+        order: 3;
+    }
+
+    .site-header__btn-nav,
+    .site-header__btn-sell {
+        font-size: 14px;
+        padding: 4px 8px;
+    }
+}

@@ -72,3 +72,30 @@
         width: 680px;
     }
 }
+
+@media screen and (max-width: 850px) {
+    .site-main .login-page {
+        width: 500px;
+        padding: 20px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .login-page__title {
+        font-size: 24px;
+    }
+
+    .form-group__label,
+    .form-group__input {
+        font-size: 14px;
+    }
+
+    .login-form__submit {
+        font-size: 18px;
+        padding: 10px;
+    }
+
+    .login-page__register-link a {
+        font-size: 16px;
+    }
+}
