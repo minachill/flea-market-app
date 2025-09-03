@@ -24,7 +24,7 @@ class ItemController extends Controller
                 $query->where('name', 'like', '%' . $keyword . '%');
             }
 
-            $items = $query->paginate(8)->withQueryString();
+            $items = $query->get();
             $viewType = 'mylist';
 
         } else {
@@ -38,9 +38,8 @@ class ItemController extends Controller
             if (!empty($keyword)) {
                 $query->where('name', 'like', '%' . $keyword . '%');
             }
-
-            $items = $query->latest()->paginate(8)->withQueryString();
-            $viewType = 'recommended';
+            $items = $query->get();
+            $viewType = 'recommend';
         }
 
         return view('items.index', compact('items', 'viewType', 'keyword'));
