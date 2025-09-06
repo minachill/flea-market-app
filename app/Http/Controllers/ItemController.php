@@ -44,4 +44,9 @@ class ItemController extends Controller
 
         return view('items.index', compact('items', 'viewType', 'keyword'));
     }
+
+    public function show(Item $item)
+    {
+        return view('items.show', compact('item'));
+    }
 }

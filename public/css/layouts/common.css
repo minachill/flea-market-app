@@ -38,16 +38,6 @@ body {
     color: #000;
 }
 
-/* 消すかも ※仕様にないボタンのため */
-/* .search-form button {
-    margin-left: 10px;
-    padding: 8px 12px;
-    border-radius: 4px;
-    background: #fff;
-    color: #000;
-    border: none;
-} */
-
 .site-header__actions {
     display: flex;
     gap: 15px;
