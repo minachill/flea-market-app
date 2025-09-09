@@ -23,9 +23,13 @@
 
             {{-- いいね・コメントアイコン（数値のみ表示） --}}
             <div class="item-detail__icons">
-                <div class="item-detail__like">
-                    <img src="{{ asset('img/icons/star.png') }}" alt="いいね">{{ $item->likes_count ?? 0 }}
-                </div>
+                <form method="POST" action="{{ route('item.like', $item->id) }}" class="item-detail__like-form">
+                    @csrf
+                    <button type="submit" class="item-detail__like-button">
+                        <img src="{{ asset($item->isLikedBy(Auth::user()) ? 'img/icons/star-filled.png' : 'img/icons/star.png') }}" alt="いいね" class="like-icon">
+                        {{ $item->likes_count ?? 0 }}
+                    </button>
+                </form>
                 <div class="item-detail__comment-count">
                     <img src="{{ asset('img/icons/comment.png') }}" alt="コメント">{{ $item->comments_count ?? 0 }}
                 </div>
@@ -75,16 +79,16 @@
             </div>
         @endforeach
 
-        <form method="POST" action="{{ route('comments.store', $item->id) }}" class="item-detail__comment-form">
+        <form method="POST" action="{{ route('comment.store', $item->id) }}" class="item-detail__comment-form">
             @csrf
-            <label for="body">商品へのコメント</label>
-            <textarea name="body" id="body" rows="4" maxlength="255" required></textarea>
+            <label for="comment">商品へのコメント</label>
+            <textarea name="comment" id="comment" rows="4" maxlength="255" required>{{ old('comment') }}</textarea>
 
-            @error('body')
-                <div class="form-error">{{ $message }}</div>
+            @error('comment')
+                <div class="error">{{ $messages }}</div>
             @enderror
 
-        <button type="submit" class="item-detail__purchase-button" @guest disabled @endguest>コメントを送信する</button>
+            <button type="submit" class="item-detail__comment-form-button" @guest disabled @endguest>コメントを送信する</button>
     </section>
 
 </main>

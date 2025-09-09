@@ -11,6 +11,7 @@ class ItemController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->input('keyword');
+        Item::withCount('likedUsers')->get();
 
         if ($request->tab === 'mylist') {
             if (!Auth::check()) {

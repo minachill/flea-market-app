@@ -130,9 +130,7 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
+        'required' => ':attributeは必ず入力してください。',
     ],
 
     /*

@@ -12,6 +12,8 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id', 'item_id', 'comment'];
+
     // コメントは1人のユーザーに属する（投稿者）
     public function user()
     {

@@ -14,6 +14,7 @@ use App\Http\Responses\LoginResponse as CustomLoginResponse;
 use App\Http\Requests\LoginRequest;
 use Laravel\Fortify\Http\Requests\LoginRequest as FortifyLoginRequest;
 
+
 class FortifyServiceProvider extends ServiceProvider
 {
     /**

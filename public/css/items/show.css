@@ -69,6 +69,18 @@
     gap: 5px;
 }
 
+.item-detail__like-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.item-detail__like-button img {
+    margin-right: 6px;
+}
+
 /* ===== 購入ボタン ===== */
 .item-detail__purchase-button {
     display: inline-block;

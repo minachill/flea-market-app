@@ -10,6 +10,8 @@ use App\Models\Item;
 class Like extends Model
 {
     use HasFactory;
+    protected $fillable = ['user_id'];
+
 
     // 「いいね」は1人のユーザーが行う
     public function user()

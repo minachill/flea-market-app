@@ -5,6 +5,8 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ExhibitionController;
 use App\Http\Controllers\MypageController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +20,8 @@ use App\Http\Controllers\MypageController;
 // 認証不要
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
 Route::get('/item/{item}', [ItemController::class, 'show'])->name('items.show');
-Route::post('/comments/{item}', [CommentController::class, 'store'])->middleware('auth')->name('comments.store');
+Route::post('/item/{item}/comment', [CommentController::class, 'store'])->middleware(['auth'])->name('comment.store');
+Route::post('/item/{item}/like', [LikeController::class, 'toggle'])->middleware('auth')->name('item.like');
 
 // 認証必須
 Route::middleware(['auth'])->group(function () {
