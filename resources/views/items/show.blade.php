@@ -31,8 +31,15 @@
                 </div>
             </div>
 
-            {{-- 購入ボタン（ログイン前は非アクティブ or ログイン誘導） --}}
-            <a href="{{ route('login') }}" class="item-detail__purchase-button">購入手続きへ</a>
+            {{-- ログイン済みユーザー向け --}}
+            @auth
+                <a href="{{ route('purchase.show', $item->id) }}" class="item-detail__purchase-button">購入手続きへ</a>
+            @endauth
+
+            {{-- ゲスト（未ログイン）ユーザー向け --}}
+            @guest
+                <a href="{{ route('login') }}" class="item-detail__purchase-button">ログインして購入</a>
+            @endguest
         </div>
     </div>
 
