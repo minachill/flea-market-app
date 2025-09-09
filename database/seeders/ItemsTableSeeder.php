@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class ItemsTableSeeder extends Seeder
 {
@@ -14,30 +15,47 @@ class ItemsTableSeeder extends Seeder
      */
     public function run()
     {
-        $dummyUser = \App\Models\User::where('email', 'dummy@example.com')->first();
+        $dummyUser = User::where('email', 'dummy@example.com')->first();
         if (!$dummyUser) {
             throw new \Exception('ダミーユーザーが存在しません。UsersTableSeeder を先に実行してください。');
         }
 
-        DB::table('items')->insert([
+        $itemId = DB::table('items')->insertGetId([
+            'name' => '腕時計',
+            'brand_name' => 'Rolax',
+            'detail' => 'スタイリッシュなデザインのメンズ腕時計',
+            'cost' => 15000,
+            'product_condition' => 1,
+            'image' => 'items/Clock.jpg',
+            'is_sold' => false,
+            'user_id' => $dummyUser->id,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        // カテゴリを2つ紐付ける
+        DB::table('category_item')->insert([
             [
-                'name' => '腕時計',
-                'brand_name' => 'Rolax',
-                'detail' => 'スタイリッシュなデザインのメンズ腕時計',
-                'cost' => 15000,
-                'product_condition' => 1, // 良好
-                'image' => 'items/Clock.jpg',
-                'is_sold' => false,
-                'user_id' => $dummyUser->id,
+                'item_id' => $itemId,
+                'category_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'item_id' => $itemId,
+                'category_id' => 5,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
+
+        DB::table('items')->insert([
             [
                 'name' => 'HDD',
                 'brand_name' => '西芝',
                 'detail' => '高速で信頼性の高いハードディスク',
                 'cost' => 5000,
-                'product_condition' => 2, // 目立った傷や汚れなし
+                'product_condition' => 2,
                 'image' => 'items/Disk.jpg',
                 'is_sold' => false,
                 'user_id' => $dummyUser->id,
@@ -49,10 +67,10 @@ class ItemsTableSeeder extends Seeder
                 'brand_name' => null,
                 'detail' => '新鮮な玉ねぎ3束のセット',
                 'cost' => 300,
-                'product_condition' => 3, // やや傷や汚れあり
+                'product_condition' => 3,
                 'image' => 'items/Onion.jpg',
                 'is_sold' => true,
-                'user_id' => $dummyUser->id, //
+                'user_id' => $dummyUser->id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -61,7 +79,7 @@ class ItemsTableSeeder extends Seeder
                 'brand_name' => null,
                 'detail' => 'クラシックなデザインの革靴',
                 'cost' => 4000,
-                'product_condition' => 4, // 状態が悪い
+                'product_condition' => 4,
                 'image' => 'items/Shoes.jpg',
                 'is_sold' => false,
                 'user_id' => $dummyUser->id,

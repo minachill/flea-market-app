@@ -47,6 +47,10 @@ class ItemController extends Controller
 
     public function show(Item $item)
     {
+        $item->loadCount(['likes', 'comments']); // ← 数だけ取る
+        $item->load(['categories', 'comments.user']); // ← 関連必要なものだけ
+
+
         return view('items.show', compact('item'));
     }
 }

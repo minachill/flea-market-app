@@ -18,6 +18,7 @@ use App\Http\Controllers\MypageController;
 // 認証不要
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
 Route::get('/item/{item}', [ItemController::class, 'show'])->name('items.show');
+Route::post('/comments/{item}', [CommentController::class, 'store'])->middleware('auth')->name('comments.store');
 
 // 認証必須
 Route::middleware(['auth'])->group(function () {

@@ -55,4 +55,14 @@ class Item extends Model
     {
         return $this->belongsToMany(Category::class, 'category_item');
     }
+
+    public function getConditionTextAttribute(): string
+    {
+        return match ($this->product_condition) {
+            1 => '良好',
+            2 => '目立った傷や汚れなし',
+            3 => 'やや傷や汚れあり',
+            4 => '状態が悪い',
+        };
+    }
 }
