@@ -20,7 +20,7 @@ class CreateItemsTable extends Migration
             $table->string('name');
             $table->string('brand_name')->nullable();
             $table->text('detail');
-            $table->unsignedInteger('cost');
+            $table->unsignedInteger('price');
             $table->tinyInteger('product_condition');
             $table->string('image');
             $table->boolean('is_sold')->default(false);

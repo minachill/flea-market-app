@@ -20,7 +20,7 @@ class Item extends Model
         'name',
         'brand_name',
         'detail',
-        'cost',
+        'price',
         'product_condition',
         'image',
         'is_sold',
