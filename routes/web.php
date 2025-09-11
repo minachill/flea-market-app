@@ -24,7 +24,7 @@ Route::post('/item/{item}/comment', [CommentController::class, 'store'])->middle
 Route::post('/item/{item}/like', [LikeController::class, 'toggle'])->middleware('auth')->name('item.like');
 
 // 認証必須
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     // マイリスト
     Route::get('/?tab=mylist', [ItemController::class, 'index'])->name('items.mylist');
 
