@@ -10,6 +10,6 @@ class PurchaseController extends Controller
 {
     public function show(Item $item)
     {
-        return view('purchase.show', compact('item'));
+        return view('purchase', compact('item'));
     }
 }

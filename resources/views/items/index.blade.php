@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '商品一覧')
+@section('title', '商品一覧画面')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/items/index.css') }}">

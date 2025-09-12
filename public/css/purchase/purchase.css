@@ -1,0 +1,124 @@
+/* ===== 商品購入画面（レイアウト全体） ===== */
+.purchase {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* ===== 左エリア（商品情報・支払い・配送） ===== */
+.purchase__left {
+    width: 60%;
+}
+
+/* ===== 商品情報（画像＋名前＋金額） ===== */
+.purchase__container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.purchase__item-image {
+    width: 120px;
+    height: 120px;
+    background-color: #D9D9D9;
+    margin-right: 20px;
+}
+
+.purchase__item-info {
+    font-size: 24px;
+}
+
+.purchase__item-name {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.purchase__item-price {
+    font-size: 24px;
+}
+
+/* ===== 支払い方法セクション ===== */
+.purchase__section {
+    margin-bottom: 30px;
+    border-top: 1px solid #5F5F5F;
+    padding-top: 20px;
+}
+
+.purchase__section-title {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.purchase__select {
+    padding: 8px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 300px;
+}
+
+/* ===== 配送先セクション ===== */
+.purchase__address {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.purchase__address-text {
+    font-size: 16px;
+    line-height: 1.5;
+    white-space: pre-line;
+}
+
+.purchase__address-edit {
+    font-size: 14px;
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.purchase__address-edit:hover {
+    text-decoration: underline;
+}
+
+/* ===== 右エリア（合計・支払い方法表示・購入ボタン） ===== */
+.purchase__right {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.purchase__summary {
+    border: 1px solid #5F5F5F;
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+.purchase__summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+    border-bottom: 1px solid #5F5F5F;
+}
+
+.purchase__summary-row:last-child {
+    border-bottom: none;
+}
+
+/* ===== 購入ボタン ===== */
+.purchase__submit-button {
+    background-color: #ff5f5f;
+    color: white;
+    font-weight: bold;
+    padding: 14px 0;
+    font-size: 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.purchase__submit-button:hover {
+    opacity: 0.9;
+}
