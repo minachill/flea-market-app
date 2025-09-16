@@ -48,9 +48,9 @@ class User extends Authenticatable
         }
 
         // 1人のユーザーは複数の住所を登録できる
-        public function addresses()
+        public function address()
         {
-            return $this->hasMany(Address::class);
+            return $this->hasOne(Address::class);
         }
 
     /**

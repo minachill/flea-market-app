@@ -11,6 +11,7 @@ use App\Models\Address;
 class Purchase extends Model
 {
     use HasFactory;
+    protected $fillable = ['user_id', 'item_id', 'address_id', 'payment_method'];
 
     // この購入はどのユーザーによるものか
     public function user()

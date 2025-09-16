@@ -1,0 +1,118 @@
+/* ===== 全体 ===== */
+.address {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    background-color: #fff;
+}
+
+/* ===== タイトル ===== */
+.address__title {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* ===== フォーム ===== */
+.address__form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* ===== グループ ===== */
+.address__group {
+    display: flex;
+    flex-direction: column;
+}
+
+.address__label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.address__input {
+    padding: 12px 14px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.address__error {
+    color: #FF5555;
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+/* ===== ボタン ===== */
+.address__actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.address__submit {
+    display: inline-block;
+    background-color: #FF5555;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    width: 100%;
+    max-width: 300px;
+}
+
+.address__submit:hover {
+    opacity: 0.9;
+}
+
+/* ===== PC (1400–1540px) ===== */
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .address {
+        max-width: 800px;
+        padding: 80px 40px;
+    }
+
+    .address__title {
+        font-size: 36px;
+    }
+
+    .address__input {
+        font-size: 20px;
+        padding: 14px 16px;
+    }
+
+    .address__submit {
+        font-size: 22px;
+        padding: 16px 40px;
+    }
+}
+
+/* ===== タブレット (768–850px) ===== */
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .address {
+        max-width: 90%;
+        padding: 40px 20px;
+    }
+
+    .address__title {
+        font-size: 28px;
+    }
+
+    .address__input {
+        font-size: 16px;
+        padding: 10px 12px;
+    }
+
+    .address__submit {
+        font-size: 18px;
+        padding: 12px 20px;
+    }
+}
