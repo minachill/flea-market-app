@@ -23,19 +23,36 @@
     </div>
 
     <div class="profile__tabs">
-        <a href="{{ route('mypage.exhibited') }}" class="profile__tab profile__tab--active">出品した商品</a>
-        <a href="{{ route('mypage.purchased') }}" class="profile__tab">購入した商品</a>
+        <a href="{{ route('mypage.index', ['page' => 'sell']) }}"
+            class="profile__tab {{ $page === 'sell' ? 'profile__tab--active' : '' }}">
+            出品した商品
+        </a>
+        <a href="{{ route('mypage.index', ['page' => 'buy']) }}"
+            class="profile__tab {{ $page === 'buy' ? 'profile__tab--active' : '' }}">
+            購入した商品
+        </a>
     </div>
 
     <div class="profile__items">
-        @foreach($items as $item)
-            <div class="profile__item">
-                <div class="profile__item-image">
-                    <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}">
+        @if($page === 'sell')
+            @foreach($exhibitedItems as $item)
+                <div class="profile__item">
+                    <div class="profile__item-image">
+                        <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}">
+                    </div>
+                    <p class="profile__item-name">{{ $item->name }}</p>
                 </div>
-                <p class="profile__item-name">{{ $item->name }}</p>
-            </div>
-        @endforeach
+            @endforeach
+        @elseif($page === 'buy')
+            @foreach($purchasedItems as $item)
+                <div class="profile__item">
+                    <div class="profile__item-image">
+                        <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}">
+                    </div>
+                    <p class="profile__item-name">{{ $item->name }}</p>
+                </div>
+            @endforeach
+        @endif
     </div>
 </main>
 @endsection

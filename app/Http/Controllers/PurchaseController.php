@@ -19,26 +19,30 @@ class PurchaseController extends Controller
 
     public function store(PurchaseRequest $request, Item $item)
     {
-    // dd($request->all()); // 確認用
+        // dd($request->all(), session()->all());
         if ($item->purchase) {
-            return back()->with('error', 'この商品はすでに購入されています');
+            return back();
         }
 
         $user = auth()->user();
+        // セッション値があれば優先、無ければ必ずプロフィール住所を使う
+        $shipping_postal   = session('shipping_postal') ?? $user->address->postal_code;
+        $shipping_address  = session('shipping_address') ?? $user->address->address;
+        $shipping_building = session('shipping_building') ?? $user->address->building;
+
         Purchase::create([
-            'user_id'        => auth()->id(),
-            'item_id'        => $item->id,
-            'address_id'     => $request->address_id, // デフォルト or 変更後
-            'payment_method' => $request->payment_method,
-            'shipping_postal'   => session('shipping_postal') ?? $user->address->postal_code,
-            'shipping_address'  => session('shipping_address') ?? $user->address->address,
-            'shipping_building' => session('shipping_building') ?? $user->address->building,
+            'user_id'           => $user->id,
+            'item_id'           => $item->id,
+            'payment_method'    => $request->payment_method,
+            'shipping_postal'   => $shipping_postal,
+            'shipping_address'  => $shipping_address,
+            'shipping_building' => $shipping_building,
         ]);
 
         $item->update(['is_sold' => true]);
 
         session()->forget(['shipping_postal', 'shipping_address', 'shipping_building']);
-        return redirect()->route('items.index')->with('success', '購入が完了しました');
+        return redirect()->route('items.index');
     }
 
     public function editAddress(Item $item)
@@ -59,8 +63,7 @@ class PurchaseController extends Controller
             'shipping_building' => $request->shipping_building,
         ]);
 
-        return redirect()->route('purchase.show', $item->id)
-                        ->with('success', '住所を変更しました');
+        return redirect()->route('purchase.show', $item->id);
     }
 
 }

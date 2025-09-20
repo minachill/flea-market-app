@@ -39,9 +39,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // プロフィール画面
     Route::get('/mypage', [MypageController::class, 'index'])->name('mypage.index');
+    Route::get('/mypage/profile', [MypageController::class, 'edit'])->name('mypage.edit');
     Route::post('/mypage/profile', [MypageController::class, 'update'])->name('mypage.update');
-    Route::get('/mypage', [MypageController::class, 'purchased'])->name('mypage.purchased')->where('page', 'buy');
-    Route::get('/mypage', [MypageController::class, 'exhibited'])->name('mypage.exhibited')->where('page', 'sell');
+    Route::get('/mypage?page=buy', [MypageController::class, 'purchased'])->name('mypage.purchased');
+    Route::get('/mypage?page=sell', [MypageController::class, 'exhibited'])->name('mypage.exhibited');
 
     // プロフィール設定画面
     Route::get('/profile/setup', function () {

@@ -24,7 +24,7 @@ class AddressRequest extends FormRequest
     public function rules()
     {
         return [
-            'shipping_postal'   => 'required|string|max:8',
+            'shipping_postal'   => ['required', 'regex:/^\d{3}-\d{4}$/'],
             'shipping_address'  => 'required|string|max:255',
             'shipping_building' => 'nullable|string|max:255',
         ];
@@ -33,9 +33,9 @@ class AddressRequest extends FormRequest
     public function messages()
     {
         return [
-            'shipping_postal.required'  => '郵便番号は必須です。',
+            'shipping_postal.required'  => '郵便番号を入力してください。',
             'shipping_postal.max'       => '郵便番号はハイフンありの8文字以内で入力してください。',
-            'shipping_address.required' => '住所は必須です。',
+            'shipping_address.required' => '住所を入力してください。',
             'shipping_address.max'      => '住所は255文字以内で入力してください。',
             'shipping_building.max'     => '建物名は255文字以内で入力してください。',
         ];

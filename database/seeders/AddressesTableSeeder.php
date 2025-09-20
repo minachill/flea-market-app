@@ -15,10 +15,22 @@ class AddressesTableSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::first();
+        $user = User::where('email', 'dummy@example.com')->first();
         if ($user) {
             DB::table('addresses')->insert([
                 'user_id'    => $user->id,
+                'postal_code' => '222-2222',
+                'address' => '大阪府大阪市テスト町2-2-2',
+                'building' => 'テストハイツ202',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+
+        $user2 = User::where('email', 'user2@example.com')->first();
+        if ($user2) {
+            DB::table('addresses')->insert([
+                'user_id' => $user2->id,
                 'postal_code' => 'XXX-YYYY',
                 'address'     => 'ここには住所と',
                 'building'    => '建物が入ります',

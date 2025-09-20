@@ -10,8 +10,6 @@
     <main class="purchase">
         <form action="{{ route('purchase.store', $item->id) }}" method="POST">
             @csrf
-                {{-- ✅ hiddenはフォームの先頭に置く。defaultAddressが無ければ空→バリデで弾く --}}
-            <input type="hidden" name="address_id" value="{{ optional(auth()->user()->defaultAddress)->id }}">
 
             <div class="purchase__container">
             <!-- 左側：商品情報エリア -->
@@ -67,7 +65,7 @@
                         </div>
                                 {{-- バリデーションエラー表示（「何も起きない」を防ぐ） --}}
         @if ($errors->any())
-          <div class="form-errors" style="margin: 12px 0; color:#c0392b;">
+          <div class="form-errors">
             @foreach ($errors->all() as $error)
               <div>・{{ $error }}</div>
             @endforeach

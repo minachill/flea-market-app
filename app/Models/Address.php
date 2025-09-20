@@ -11,6 +11,13 @@ class Address extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'postal_code',
+        'address',
+        'building',
+    ];
+
     // ユーザーとのリレーション（1人のユーザーが複数の住所を持つ）
     public function user()
     {
