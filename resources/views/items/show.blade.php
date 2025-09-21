@@ -11,7 +11,7 @@
     <div class="item-detail__container">
         {{-- 商品画像 --}}
         <div class="item-detail__image">
-            <img src="{{ Storage::url($item->image) }}" alt="{{ $item->name }}">
+            <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}">
         </div>
 
         {{-- 商品メイン情報 --}}

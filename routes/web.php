@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\PurchaseController;
-use App\Http\Controllers\ExhibitionController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
@@ -35,7 +34,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/purchase/address/{item}', [PurchaseController::class, 'updateAddress'])->name('purchase.address.update');
 
     // 出品
-    Route::get('/sell', [ExhibitionController::class, 'create'])->name('exhibition.create');
+    Route::get('/sell', [ItemController::class, 'create'])->name('items.create');
+    Route::post('/sell', [ItemController::class, 'store'])->name('items.store');
 
     // プロフィール画面
     Route::get('/mypage', [MypageController::class, 'index'])->name('mypage.index');

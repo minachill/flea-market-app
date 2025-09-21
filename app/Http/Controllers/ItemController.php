@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
+use App\Models\Category;
+use App\Http\Requests\ExhibitionRequest;
+
 
 class ItemController extends Controller
 {
@@ -53,5 +56,37 @@ class ItemController extends Controller
 
 
         return view('items.show', compact('item'));
+    }
+
+    // 出品画面表示、出品処理
+    public function create()
+    {
+        $categories = Category::all();
+        return view('exhibition.create', compact('categories'));
+    }
+
+    public function store(ExhibitionRequest $request)
+    {
+        $validated = $request->validated();
+        // 画像の保存処理
+        $path = $request->file('image')->store('items', 'public');
+        // → storage/app/public/items に保存される
+
+    // 商品登録
+        $item = new Item();
+        $item->name              = $validated['name'];
+        $item->brand_name        = $request->input('brand_name');   // brand_name に合わせる
+        $item->detail            = $validated['description'];       // detail カラムに保存
+        $item->price             = $validated['price'];
+        $item->product_condition = $validated['condition'];         // int (1〜4)
+        $item->user_id           = auth()->id();
+        $item->image             = $path;                          // 画像パスを保存
+        $item->save();
+
+        // カテゴリを紐付け（多対多）
+        $item->categories()->attach($validated['categories']);
+
+        // 商品詳細画面へリダイレクト
+        return redirect()->route('items.show', $item->id);
     }
 }
