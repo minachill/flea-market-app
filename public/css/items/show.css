@@ -142,16 +142,23 @@
 .item-detail__section-row {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+        /* 上揃え */
+    margin: 8px 0;
 }
 
 .item-detail__section-title-category,
 .item-detail__section-title-condition {
+    flex: 0 0 140px;
     font-size: 24px;
     font-weight: bold;
-    margin: 10px 50px 10px 0;
+    margin: 10px 40px 10px 0;
 }
-
+.item-detail__section-content {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
 .item-detail__category-tag {
     border-radius: 50px;
     padding: 4px 25px;
@@ -256,16 +263,17 @@
 
 @media screen and (max-width: 850px) {
     .item-detail__container {
+        flex-direction: row;
         padding: 20px;
         max-width: 100%;
     }
 
     /* 画像 */
     .item-detail__image {
-        flex: none;
+        flex: 0 0 48%;
         width: 100%;
-        margin-bottom: 30px;
-        padding: 0;
+        margin-bottom: 0px;
+        padding: 0 10px;
     }
 
     .item-detail__image img {
@@ -281,6 +289,7 @@
     /* 情報エリア */
     .item-detail__info {
         padding: 20px;
+        flex: 1;
     }
 
     .item-detail__name {
@@ -319,74 +328,54 @@
     /* 購入ボタン */
     .item-detail__purchase-button {
         width: 100%;
-        font-size: 20px;
-        padding: 8px 10px;
+        font-size: 18px;
+        padding: 6px 10px;
     }
 
     /* セクション（説明・情報・コメント） */
+    .item-detail__section {
+        margin-top: 30px;
+    }
     .item-detail__section-title {
-        font-size: 24px;
-        margin: 5px 0;
+        font-size: 20px;
+        margin: 0;
     }
 
     .item-detail__section-title-comment {
-        font-size: 24px;
+        font-size: 20px;
         margin: 10px 0;
     }
 
     .item-detail__description {
-        font-size: 16px;
+        font-size: 14px;
+        margin-bottom: 0px;
     }
 
     /* カテゴリタグ */
     .item-detail__section-row {
-        flex-direction: column;
+        flex-direction: row;
         align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 10px;
     }
 
-    /* 見出しやテキストを全体的に縮小 */
-    .item-detail__name {
-        font-size: 28px;
-    }
-    .item-detail__brand {
-        font-size: 16px;
-    }
-    .item-detail__price {
-        font-size: 28px;
-    }
-    .item-detail__yen,
-    .item-detail__tax {
-        font-size: 18px;
-    }
 
-    .item-detail__purchase-button {
-        width: 100%;
-        font-size: 20px;
-        padding: 8px 10px;
-    }
-
-    .item-detail__section-title,
-    .item-detail__section-title-comment {
-        font-size: 20px;
-    }
-
-    .item-detail__description {
-        font-size: 14px;
-    }
 
     .item-detail__section-title-category,
     .item-detail__section-title-condition {
-        font-size: 18px;
-        margin: 10px 30px 10px 0;
+        flex: 0 0 80px;
+        font-size: 14px;
+        margin: 0 20px 0 0;
     }
 
-    .item-detail__category-tag {
-        font-size: 14px;
+    .item-detail__category-tag,
+    .item-detail__condition-tag {
+        font-size: 12px;
         padding: 2px 15px;
-        margin: 2px 10px 10px 5px;
+        margin: 0 10px 0 0;
     }
     .item-detail__comment-user-name {
-        font-size: 12px;
+        font-size: 18px;
     }
 
     .item-detail__comment-body {
@@ -395,16 +384,20 @@
     }
 
     .item-detail__comment-form-title {
-        font-size: 20px;
+        font-size: 18px;
     }
 
+    .item-detail__comment-user-avatar {
+        width: 50px;
+        height: 50px;
+    }
     .item-detail__comment-form-input {
         font-size: 16px;
-        height: 180px;
+        height: 150px;
     }
 
     .item-detail__comment-form-button {
-        font-size: 18px;
+        font-size: 16px;
         padding: 8px 10px;
     }
 

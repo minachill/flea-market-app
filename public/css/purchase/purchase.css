@@ -1,26 +1,26 @@
 /* ===== 購入画面全体 ===== */
 .purchase {
-    max-width: 1540px;
-    margin: 0 auto;
+    max-width: 1300px;
+    margin: 60px auto;
     padding: 2rem;
     background: #fff;
 }
 
 .purchase__container {
     display: flex;
-    gap: 2rem;
+    gap: 3rem;
     justify-content: space-between;
-    flex-wrap: wrap;
-    /* タブレット時は縦並び対応 */
+    flex-wrap: nowrap;
 }
 
 /* ===== 左：商品情報エリア ===== */
 .purchase__left {
-    flex: 1 1 65%;
-    min-width: 320px;
+    flex: 0 0 60%;
+    min-width: 300px;
+    max-width: 60%;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 4rem;
 }
 
 /* 商品プレビュー */
@@ -33,9 +33,7 @@
 .purchase__item-image {
     flex: 0 0 180px;
     height: 180px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: #f3f3f3;
+    background-color: #D9D9D9;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -45,111 +43,219 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 4px;
 }
 
 .purchase__item-info {
     flex: 1;
+    margin-left: 30px;
 }
 
 .purchase__item-name {
-    font-size: clamp(18px, 2vw, 24px);
+    font-size: clamp(20px, 2vw, 30px);
     font-weight: bold;
     margin-bottom: 0.5rem;
+    margin-top: 0;
 }
 
 .purchase__item-price {
-    font-size: clamp(16px, 2vw, 20px);
-    font-weight: bold;
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.purchase__item-currency {
+    font-size: 27px;
+    font-weight: 400;
+    color: #000000;
+}
+
+.purchase__item-amount {
+    font-size: 32px;
+    font-weight: 400;
+    color: #000000;
 }
 
 /* 支払い方法 */
 .purchase__section {
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #000000;
     padding-top: 1.5rem;
 }
 
-.purchase__label {
-    font-size: clamp(14px, 1.5vw, 18px);
+.purchase__section-title {
+    font-size: clamp(16px, 1.5vw, 20px);
     font-weight: bold;
-    margin-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    margin-left: 20px;
     display: block;
 }
 
+.purchase__select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 250px;
+    margin-left: 70px;
+}
+
 .purchase__select {
-    padding: 0.8em 1em;
-    border: 1px solid #ccc;
+    width: 100%;
+    padding: 0.5em;
+    padding-right: 2.5em;
+    border: 1px solid #5F5F5F;
     border-radius: 4px;
     font-size: clamp(14px, 1.5vw, 16px);
-    width: 100%;
-    max-width: 400px;
+    color: #5F5F5F;
+    appearance: none;
+    background: #fff;
+}
+
+/* ▼逆三角形 */
+.purchase__select-wrapper::after {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #5F5F5F;
+    /* ▼ */
+    pointer-events: none;
 }
 
 /* 配送先 */
 .purchase__address {
+    position: relative;
     margin-top: 1rem;
     font-size: clamp(14px, 1.5vw, 18px);
+    border-bottom: 1px solid #000000;
+    padding-right: 60px;
+}
+.purchase__section-title-address {
+    font-size: clamp(16px, 1.5vw, 20px);
+    font-weight: bold;
+    margin-bottom: 2rem;
+    margin-left: 20px;
+    display: block;
 }
 
-.purchase__address-change {
-    color: #007bff;
-    font-size: clamp(12px, 1.5vw, 16px);
-    margin-left: 0.5rem;
-    text-decoration: underline;
+.purchase__address-text {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    font-size: clamp(16px, 1.5vw, 20px);
+    font-weight: bold;
+    margin-left: 70px;
+    margin-bottom: 3.5rem;
+}
+.purchase__postal-mark {
+    margin-right: 3px;
+    /* ← 好きな余白に調整 */
+}
+
+.purchase__address-edit {
+    color: #0073CC;
+    font-size: clamp(14px, 1.5vw, 20px);
+    text-decoration: none;
     cursor: pointer;
+    border: none;
+    background: none;
+    cursor: pointer;
+    position: absolute;
+    top: -55%;
+    right: 30px;
 }
 
 /* ===== 右：注文サマリーエリア ===== */
-.purchase__summary {
-    flex: 0 0 300px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 1.5rem;
+.purchase__right {
+    flex: 0 0 35%;
+    min-width: 180px;
+    max-width: 35%;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    height: fit-content;
+    align-items: center;
+}
+
+.purchase__summary {
+    width: 100%;
+    border: 1px solid #000000;
+    overflow: hidden;
 }
 
 .purchase__summary-row {
-    display: flex;
-    justify-content: space-between;
-    font-size: clamp(14px, 1.5vw, 18px);
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #000000;
 }
 
 .purchase__summary-row:last-child {
     border-bottom: none;
 }
 
+.purchase__summary-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.6rem ;
+    font-size: clamp(14px, 1.5vw, 20px);
+}
+.purchase__summary-currency {
+    font-size: clamp(14px, 1.5vw, 20px);
+    margin-right: 2px;
+    vertical-align: baseline;
+}
+
+.purchase__summary-amount {
+    font-size: clamp(16px, 1.5vw, 24px);
+    vertical-align: baseline;
+}
+.purchase__summary-row:last-child {
+    border-bottom: none;
+}
+.purchase__form-errors {
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 30px;
+    text-align: center;
+    min-height: 36px;
+}
+.form-errors {
+    margin-top: 5px;
+    color: #FF0000;
+    font-size: clamp(14px, 1.5vw, 16px);
+    min-height: 26px;
+}
 .purchase__submit-button {
     background: #FF5555;
     color: #fff;
     border: none;
-    border-radius: 6px;
-    padding: 1em;
-    font-size: clamp(16px, 2vw, 20px);
+    border-radius: 5px;
+    padding: 0.5em;
+    font-size: clamp(16px, 2vw, 26px);
     font-weight: bold;
     cursor: pointer;
     transition: background 0.2s;
     width: 100%;
-    margin-top: 1rem;
+    margin-top: 0rem;
 }
 
 /* ===== タブレット対応 (768–850px) ===== */
 @media (max-width: 850px) and (min-width: 768px) {
-    .purchase__container {
-        flex-direction: column;
-    }
 
     .purchase__left {
         flex: 1 1 100%;
+        gap: 2.5rem;
     }
 
     .purchase__summary {
         flex: 1 1 100%;
         max-width: 100%;
-        margin-top: 2rem;
+        margin-top: 0rem;
+        max-height: fit-content;
+        padding: auto;
+    }
+
+        .purchase__summary-content {
+            padding: 1.5rem;
     }
 }

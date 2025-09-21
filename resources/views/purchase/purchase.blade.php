@@ -14,36 +14,45 @@
             <div class="purchase__container">
             <!-- 左側：商品情報エリア -->
                 <section class="purchase__left">
-                    <div class="purchase__item-box">
+                    <div class="purchase__item">
                         <div class="purchase__item-image">
                             <img src="{{ asset('storage/' . $item->image) }}" alt="商品画像">
                         </div>
                         <div class="purchase__item-info">
                             <h2 class="purchase__item-name">{{ $item->name }}</h2>
-                            <p class="purchase__item-price">¥{{ number_format($item->price) }}</p>
+                            <p class="purchase__item-price">
+                                <span class="purchase__item-currency">¥</span>
+                                <span class="purchase__item-amount">{{ number_format($item->price) }}</span>
+                            </p>
                         </div>
                     </div>
 
                 <!-- 支払い方法 -->
                     <div class="purchase__section">
                         <h3 class="purchase__section-title">支払い方法</h3>
-                        <select class="purchase__select" name="payment_method" id="payment_method">
-                            <option value="convenience">コンビニ払い</option>
-                            <option value="credit">カード払い</option>
-                        </select>
+                        <div class="purchase__select-wrapper">
+                            <select class="purchase__select" name="payment_method" id="payment_method">
+                                <option value="" selected disabled>選択してください</option>
+                                <option value="convenience" >コンビニ払い</option>
+                                <option value="credit">カード払い</option>
+                            </select>
+                        </div>
                     </div>
 
                 <!-- 配送先 -->
                     <div class="purchase__section">
-                        <h3 class="purchase__section-title">配送先</h3>
+                        <h3 class="purchase__section-title-address">配送先</h3>
                         <div class="purchase__address">
                             @if(session('shipping_postal'))
                                 <p class="purchase__address-text">
-                                    〒{{ session('shipping_postal') }}<br>{{ session('shipping_address') }} {{ session('shipping_building') }}
+                                    <span class="purchase__postal-mark">〒</span>
+                                    <span class="purchase__postal-code">{{ session('shipping_postal') }}</span><br>
+                                    {{ session('shipping_address') }} {{ session('shipping_building') }}
                                 </p>
                             @else
                                 <p class="purchase__address-text">
-                                    〒{{ $user->address->postal_code }}<br>
+                                    <span class="purchase__postal-mark">〒</span>
+                                    <span class="purchase__postal-code">{{ $user->address->postal_code }}</span><br>
                                     {{ $user->address->address }} {{ $user->address->building }}
                                 </p>
                             @endif
@@ -56,22 +65,30 @@
                 <div class="purchase__right">
                     <div class="purchase__summary">
                         <div class="purchase__summary-row">
-                            <span class="purchase__summary-label">商品代金</span>
-                            <span class="purchase__summary-value">¥{{ number_format($item->price) }}</span>
+                            <div class="purchase__summary-content">
+                                <span class="purchase__summary-label">商品代金</span>
+                                <span class="purchase__summary-value">
+                                    <span class="purchase__summary-currency">¥</span>
+                                    <span class="purchase__summary-amount">{{ number_format($item->price) }}</span>
+                                </span>
+                            </div>
                         </div>
                         <div class="purchase__summary-row">
-                            <span class="purchase__summary-label">支払い方法</span>
-                            <span class="purchase__summary-value" id="summary_payment">コンビニ払い</span> {{-- 仮置き --}}
+                            <div class="purchase__summary-content">
+                                <span class="purchase__summary-label">支払い方法</span>
+                                <span class="purchase__summary-value" id="summary_payment">コンビニ払い</span>
+                            </div>
                         </div>
-                                {{-- バリデーションエラー表示（「何も起きない」を防ぐ） --}}
-        @if ($errors->any())
-          <div class="form-errors">
-            @foreach ($errors->all() as $error)
-              <div>・{{ $error }}</div>
-            @endforeach
-          </div>
-        @endif
-                        
+                    </div>
+                    <!-- エラーはここに移動 -->
+                    <div class="purchase__form-errors">
+                        @if ($errors->any())
+                            <div class="form-errors">
+                                @foreach ($errors->all() as $error)
+                                    <div>{{ $error }}</div>
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
                     <button type="submit" class="purchase__submit-button">購入する</button>
                 </div>
@@ -80,13 +97,21 @@
     </main>
 {{-- 支払い方法→サマリーを即時反映 --}}
     <script>
-        (function() {
-    const select = document.getElementById('payment_method');
-    const summary = document.getElementById('summary_payment');
-    if (!select || !summary) return;
-    const update = () => { summary.textContent = select.options[select.selectedIndex].text; };
-    update();            // 初期反映
-    select.addEventListener('change', update);
+    (function() {
+        const select = document.getElementById('payment_method');
+        const summary = document.getElementById('summary_payment');
+        if (!select || !summary) return;
+
+        const update = () => {
+            if (select.value) {
+                summary.textContent = select.options[select.selectedIndex].text;
+            } else {
+                summary.textContent = "コンビニ払い"; // 初期値
+            }
+        };
+
+        update(); // ページ読み込み時に初期反映
+        select.addEventListener('change', update);
     })();
     </script>
 @endsection

@@ -58,13 +58,18 @@
                 <h2 class="item-detail__section-title">商品の情報</h2>
                 <div class="item-detail__section-row">
                     <p class="item-detail__section-title-category">カテゴリー</p>
-                    @foreach ($item->categories as $category)
-                        <span class="item-detail__category-tag">{{ $category->name }}</span>
-                    @endforeach
+                    <div class="item-detail__section-content">
+                        @foreach ($item->categories as $category)
+                            <span class="item-detail__category-tag">{{ $category->name }}</span>
+                        @endforeach
+                    </div>
                 </div>
+
                 <div class="item-detail__section-row">
                     <p class="item-detail__section-title-condition">商品の状態</p>
-                    <span class="item-detail__condition-tag">{{ $item->condition_text }}</span>
+                    <div class="item-detail__section-content">
+                        <span class="item-detail__condition-tag">{{ $item->condition_text }}</span>
+                    </div>
                 </div>
             </section>
 

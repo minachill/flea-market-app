@@ -8,34 +8,35 @@
 
 /* ===== タイトル ===== */
 .address__title {
-    font-size: 32px;
+    font-size: 36px;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 /* ===== フォーム ===== */
 .address__form {
     display: flex;
     flex-direction: column;
-    gap: 25px;
 }
 
 /* ===== グループ ===== */
 .address__group {
     display: flex;
     flex-direction: column;
+    min-height: 150px;
+    margin-bottom: 30px;
 }
 
 .address__label {
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
     margin-bottom: 8px;
 }
 
 .address__input {
     padding: 12px 14px;
-    font-size: 18px;
+    font-size: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
     width: 100%;
@@ -44,14 +45,16 @@
 
 .address__error {
     color: #FF5555;
-    font-size: 14px;
-    margin-top: 6px;
+    font-size: 20px;
+    margin-top: 2px;
+    width: 100%;
+    min-height: 28px;
 }
 
 /* ===== ボタン ===== */
 .address__actions {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .address__submit {
@@ -62,15 +65,11 @@
     font-weight: bold;
     padding: 14px 30px;
     border: none;
-    border-radius: 6px;
+    border-radius: 5px;
     cursor: pointer;
     transition: 0.2s;
     width: 100%;
-    max-width: 300px;
-}
 
-.address__submit:hover {
-    opacity: 0.9;
 }
 
 /* ===== PC (1400–1540px) ===== */
@@ -98,19 +97,30 @@
 /* ===== タブレット (768–850px) ===== */
 @media screen and (min-width: 768px) and (max-width: 850px) {
     .address {
-        max-width: 90%;
+        max-width: 70%;
         padding: 40px 20px;
     }
 
     .address__title {
-        font-size: 28px;
+        font-size: 26px;
     }
 
+    .address__group {
+        min-height: 120px;
+        margin-bottom: 20px;
+    }
     .address__input {
         font-size: 16px;
         padding: 10px 12px;
     }
-
+    .address__error {
+        font-size: 16px;
+        min-height: 24px;
+    }
+    .address__label {
+        font-size: 20px;
+        margin-bottom: 6px;
+    }
     .address__submit {
         font-size: 18px;
         padding: 12px 20px;

@@ -95,9 +95,6 @@
     font-weight: bold;
 }
 
-.profile-edit__image-button:hover {
-    opacity: .9;
-}
 
 /* 入力群 */
 .profile-edit__group {
@@ -146,10 +143,6 @@
     background: #FF5555;
     cursor: pointer;
     margin: 36px 0 0;
-}
-
-.profile-edit__submit:hover {
-    filter: brightness(.95);
 }
 
 /* ========= Tablet 768–850px ========= */

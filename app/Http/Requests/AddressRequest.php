@@ -33,11 +33,11 @@ class AddressRequest extends FormRequest
     public function messages()
     {
         return [
-            'shipping_postal.required'  => '郵便番号を入力してください。',
-            'shipping_postal.max'       => '郵便番号はハイフンありの8文字以内で入力してください。',
-            'shipping_address.required' => '住所を入力してください。',
-            'shipping_address.max'      => '住所は255文字以内で入力してください。',
-            'shipping_building.max'     => '建物名は255文字以内で入力してください。',
+            'shipping_postal.required'  => '郵便番号を入力してください',
+            'shipping_postal.regex'       => '郵便番号はハイフンありの8文字以内で入力してください',
+            'shipping_address.required' => '住所を入力してください',
+            'shipping_address.max'      => '住所は255文字以内で入力してください',
+            'shipping_building.max'     => '建物名は255文字以内で入力してください',
         ];
     }
 }
