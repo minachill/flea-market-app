@@ -25,7 +25,7 @@
 
         <!-- 商品の詳細 -->
         <div class="sell-form__section">
-            <h2 class="sell-form__subtitle">商品詳細</h2>
+            <h2 class="sell-form__subtitle">商品の詳細</h2>
 
             <!-- カテゴリ -->
             <div class="sell-form__field">
@@ -44,13 +44,15 @@
             <!-- 商品の状態 -->
             <div class="sell-form__field">
                 <label class="sell-form__label">商品の状態</label>
-                <select name="condition" class="sell-form__select">
-                    <option value="">選択してください</option>
-                    <option value="1">良好</option>
-                    <option value="2">目立った傷や汚れなし</option>
-                    <option value="3">やや傷や汚れあり</option>
-                    <option value="4">状態が悪い</option>
-                </select>
+                <div class="sell-form__select-wrapper">
+                    <select name="condition" class="sell-form__select">
+                        <option value="" selected hidden>選択してください</option>
+                        <option value="1">良好</option>
+                        <option value="2">目立った傷や汚れなし</option>
+                        <option value="3">やや傷や汚れあり</option>
+                        <option value="4">状態が悪い</option>
+                    </select>
+                </div>
                 @error('condition') <p class="sell-form__error">{{ $message }}</p> @enderror
             </div>
         </div>
@@ -79,7 +81,7 @@
             <div class="sell-form__field">
                 <label class="sell-form__label">販売価格</label>
                 <div class="sell-form__price">
-                    <span>¥</span>
+                    <span class="sell-form__price-symbol">¥</span>
                     <input type="number" name="price" class="sell-form__input" value="{{ old('price') }}">
                 </div>
                 @error('price') <p class="sell-form__error">{{ $message }}</p> @enderror

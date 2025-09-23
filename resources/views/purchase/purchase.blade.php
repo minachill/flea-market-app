@@ -32,7 +32,7 @@
                         <h3 class="purchase__section-title">支払い方法</h3>
                         <div class="purchase__select-wrapper">
                             <select class="purchase__select" name="payment_method" id="payment_method">
-                                <option value="" selected disabled>選択してください</option>
+                                <option value="" selected hidden>選択してください</option>
                                 <option value="convenience" >コンビニ払い</option>
                                 <option value="credit">カード払い</option>
                             </select>
