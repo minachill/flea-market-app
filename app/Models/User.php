@@ -14,7 +14,8 @@ use App\Models\Comment;
 use App\Models\Purchase;
 use App\Models\Address;
 
-class User extends Authenticatable
+
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 

@@ -138,7 +138,7 @@ class ItemsTableSeeder extends Seeder
                 'name' => 'コーヒーミル',
                 'brand_name' => 'Starbacks',
                 'detail' => '手動のコーヒーミル',
-                'priceprice' => 4000,
+                'price' => 4000,
                 'product_condition' => 1,
                 'image' => 'items/CoffeeMill.jpg',
                 'is_sold' => false,

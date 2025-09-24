@@ -11,10 +11,16 @@
 
     {{-- タブメニュー --}}
     <div class="item-index__tab-menu">
-        <a href="/" class="item-index__tab {{ $viewType === 'recommend' ? 'item-index__tab--active' : '' }}">おすすめ</a>
+        <a href="{{ route('items.index', array_merge(request()->all(), ['tab' => 'recommend'])) }}"
+            class="item-index__tab {{ $viewType === 'recommend' ? 'item-index__tab--active' : '' }}">
+            おすすめ
+        </a>
         @auth
         {{-- ログイン時 --}}
-            <a href="/?tab=mylist" class="item-index__tab {{ $viewType === 'mylist' ? 'item-index__tab--active' : '' }}">マイリスト</a>
+            <a href="{{ route('items.index', array_merge(request()->all(), ['tab' => 'mylist'])) }}"
+                class="item-index__tab {{ $viewType === 'mylist' ? 'item-index__tab--active' : '' }}">
+                マイリスト
+            </a>
         @endauth
 
         @guest

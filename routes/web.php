@@ -29,9 +29,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // 購入関係
     Route::get('/purchase/{item}', [PurchaseController::class, 'show'])->name('purchase.show');
-    Route::post('/purchase/{item}', [PurchaseController::class, 'store'])->name('purchase.store');
     Route::get('/purchase/address/{item}', [PurchaseController::class, 'editAddress'])->name('purchase.address.edit');
     Route::post('/purchase/address/{item}', [PurchaseController::class, 'updateAddress'])->name('purchase.address.update');
+    Route::post('/purchase/{item}/checkout', [PurchaseController::class, 'checkout'])->name('purchase.checkout');
+    Route::get('/purchase/{item}/success', [PurchaseController::class, 'success'])->name('purchase.success');
 
     // 出品
     Route::get('/sell', [ItemController::class, 'create'])->name('items.create');
@@ -39,14 +40,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // プロフィール画面
     Route::get('/mypage', [MypageController::class, 'index'])->name('mypage.index');
-    Route::get('/mypage/profile', [MypageController::class, 'edit'])->name('mypage.edit');
-    Route::post('/mypage/profile', [MypageController::class, 'update'])->name('mypage.update');
+    Route::get('/mypage/edit', [MypageController::class, 'edit'])->name('mypage.edit');
+    Route::post('/mypage/edit', [MypageController::class, 'update']);
     Route::get('/mypage?page=buy', [MypageController::class, 'purchased'])->name('mypage.purchased');
     Route::get('/mypage?page=sell', [MypageController::class, 'exhibited'])->name('mypage.exhibited');
-
-    // プロフィール設定画面
-    Route::get('/profile/setup', function () {
-        return view('mypage.profile-setup'); // Bladeは仮でOK
-    })->name('profile.setup');
 });
 

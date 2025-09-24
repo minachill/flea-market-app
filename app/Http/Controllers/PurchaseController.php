@@ -8,6 +8,8 @@ use App\Models\Purchase;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PurchaseRequest;
 use App\Http\Requests\AddressRequest;
+use Stripe\Stripe;
+use Stripe\Checkout\Session;
 
 class PurchaseController extends Controller
 {
@@ -15,34 +17,6 @@ class PurchaseController extends Controller
     {
         $user = auth()->user(); // ログイン中のユーザー
         return view('purchase.purchase', compact('item', 'user'));
-    }
-
-    public function store(PurchaseRequest $request, Item $item)
-    {
-        // dd($request->all(), session()->all());
-        if ($item->purchase) {
-            return back();
-        }
-
-        $user = auth()->user();
-        // セッション値があれば優先、無ければ必ずプロフィール住所を使う
-        $shipping_postal   = session('shipping_postal') ?? $user->address->postal_code;
-        $shipping_address  = session('shipping_address') ?? $user->address->address;
-        $shipping_building = session('shipping_building') ?? $user->address->building;
-
-        Purchase::create([
-            'user_id'           => $user->id,
-            'item_id'           => $item->id,
-            'payment_method'    => $request->payment_method,
-            'shipping_postal'   => $shipping_postal,
-            'shipping_address'  => $shipping_address,
-            'shipping_building' => $shipping_building,
-        ]);
-
-        $item->update(['is_sold' => true]);
-
-        session()->forget(['shipping_postal', 'shipping_address', 'shipping_building']);
-        return redirect()->route('items.index');
     }
 
     public function editAddress(Item $item)
@@ -66,4 +40,52 @@ class PurchaseController extends Controller
         return redirect()->route('purchase.show', $item->id);
     }
 
+    public function checkout(PurchaseRequest $request, Item $item)
+    {
+        Stripe::setApiKey(config('services.stripe.secret'));
+
+        $method = $request->input('payment_method') === 'convenience'
+            ? ['konbini']
+            : ['card'];
+
+        $session = Session::create([
+            'payment_method_types' => $method,
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'jpy',
+                    'product_data' => [
+                        'name' => $item->name,
+                    ],
+                    'unit_amount' => $item->price,
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            // Stripeが成功時に飛ばすURL
+            'success_url' => route('purchase.success', $item->id),
+            'cancel_url'  => route('purchase.show', $item->id),
+        ]);
+
+        return redirect($session->url);
+    }
+
+    public function success(Item $item)
+    {
+        $user = auth()->user();
+
+        Purchase::create([
+            'user_id'           => $user->id,
+            'item_id'           => $item->id,
+            'payment_method'    => 'stripe', // 実際はwebhookで管理するのがベスト
+            'shipping_postal'   => session('shipping_postal') ?? $user->address->postal_code,
+            'shipping_address'  => session('shipping_address') ?? $user->address->address,
+            'shipping_building' => session('shipping_building') ?? $user->address->building,
+        ]);
+
+        $item->update(['is_sold' => true]);
+
+        session()->forget(['shipping_postal', 'shipping_address', 'shipping_building']);
+
+        return redirect()->route('items.index');
+    }
 }

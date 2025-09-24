@@ -8,7 +8,7 @@
 
 @section('content')
     <main class="purchase">
-        <form action="{{ route('purchase.store', $item->id) }}" method="POST">
+        <form action="{{ route('purchase.checkout', $item->id) }}" method="POST">
             @csrf
 
             <div class="purchase__container">
@@ -36,7 +36,11 @@
                                 <option value="convenience" >コンビニ払い</option>
                                 <option value="credit">カード払い</option>
                             </select>
+                            @error('payment_method')
+                                <p class="purchase__error">{{ $message }}</p>
+                            @enderror
                         </div>
+
                     </div>
 
                 <!-- 配送先 -->
@@ -79,16 +83,6 @@
                                 <span class="purchase__summary-value" id="summary_payment">コンビニ払い</span>
                             </div>
                         </div>
-                    </div>
-                    <!-- エラーはここに移動 -->
-                    <div class="purchase__form-errors">
-                        @if ($errors->any())
-                            <div class="form-errors">
-                                @foreach ($errors->all() as $error)
-                                    <div>{{ $error }}</div>
-                                @endforeach
-                            </div>
-                        @endif
                     </div>
                     <button type="submit" class="purchase__submit-button">購入する</button>
                 </div>

@@ -109,6 +109,13 @@
     background: #fff;
 }
 
+.purchase__error {
+    position: absolute;
+    top: 100%;
+    color: #FF0000;
+    font-size: clamp(12px, 1.5vw, 14px);
+}
+
 /* ▼逆三角形 */
 .purchase__select-wrapper::after {
     content: "";
@@ -212,19 +219,7 @@
 .purchase__summary-row:last-child {
     border-bottom: none;
 }
-.purchase__form-errors {
-    width: 100%;
-    margin-top: 5px;
-    margin-bottom: 30px;
-    text-align: center;
-    min-height: 36px;
-}
-.form-errors {
-    margin-top: 5px;
-    color: #FF0000;
-    font-size: clamp(14px, 1.5vw, 16px);
-    min-height: 26px;
-}
+
 .purchase__submit-button {
     background: #FF5555;
     color: #fff;
@@ -236,7 +231,7 @@
     cursor: pointer;
     transition: background 0.2s;
     width: 100%;
-    margin-top: 0rem;
+    margin-top: 4rem;
 }
 
 /* ===== タブレット対応 (768–850px) ===== */
