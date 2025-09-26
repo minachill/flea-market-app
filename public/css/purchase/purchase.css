@@ -202,9 +202,22 @@
 .purchase__summary-content {
     display: flex;
     justify-content: space-between;
+    gap: 20px;
     align-items: center;
     padding: 2.6rem ;
     font-size: clamp(14px, 1.5vw, 20px);
+}
+.purchase__summary-label {
+    flex: 1;
+    /* 左に寄せる */
+    text-align: center;
+    /* 中央寄せっぽく見せる */
+}
+
+.purchase__summary-value {
+    flex: 1;
+    /* 右に寄せる */
+    text-align: center;
 }
 .purchase__summary-currency {
     font-size: clamp(14px, 1.5vw, 20px);

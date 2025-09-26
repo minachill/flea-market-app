@@ -16,40 +16,18 @@ class ItemsTableSeeder extends Seeder
     public function run()
     {
         $dummyUser = User::where('email', 'dummy@example.com')->first();
-        if (!$dummyUser) {
-            throw new \Exception('ダミーユーザーが存在しません。UsersTableSeeder を先に実行してください。');
-        }
 
-        $itemId = DB::table('items')->insertGetId([
-            'name' => '腕時計',
-            'brand_name' => 'Rolax',
-            'detail' => 'スタイリッシュなデザインのメンズ腕時計',
-            'price' => 15000,
-            'product_condition' => 1,
-            'image' => 'items/Clock.jpg',
-            'is_sold' => false,
-            'user_id' => $dummyUser->id,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
-        // カテゴリを2つ紐付ける
-        DB::table('category_item')->insert([
+        $items = [
             [
-                'item_id' => $itemId,
-                'category_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'name' => '腕時計',
+                'brand_name' => 'Rolax',
+                'detail' => 'スタイリッシュなデザインのメンズ腕時計',
+                'price' => 15000,
+                'product_condition' => 1,
+                'image' => 'items/Clock.jpg',
+                'is_sold' => false,
+                'categories' => [1, 5], // ファッション, メンズ
             ],
-            [
-                'item_id' => $itemId,
-                'category_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
-
-        DB::table('items')->insert([
             [
                 'name' => 'HDD',
                 'brand_name' => '西芝',
@@ -58,9 +36,7 @@ class ItemsTableSeeder extends Seeder
                 'product_condition' => 2,
                 'image' => 'items/Disk.jpg',
                 'is_sold' => false,
-                'user_id' => $dummyUser->id,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'categories' => [2], // 家電
             ],
             [
                 'name' => '玉ねぎ3束',
@@ -70,9 +46,7 @@ class ItemsTableSeeder extends Seeder
                 'product_condition' => 3,
                 'image' => 'items/Onion.jpg',
                 'is_sold' => true,
-                'user_id' => $dummyUser->id,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'categories' => [10], // キッチン
             ],
             [
                 'name' => '革靴',
@@ -82,9 +56,7 @@ class ItemsTableSeeder extends Seeder
                 'product_condition' => 4,
                 'image' => 'items/Shoes.jpg',
                 'is_sold' => false,
-                'user_id' => $dummyUser->id,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'categories' => [1, 5], // ファッション, メンズ
             ],
             [
                 'name' => 'ノートPC',
@@ -94,9 +66,7 @@ class ItemsTableSeeder extends Seeder
                 'product_condition' => 1,
                 'image' => 'items/Laptop.jpg',
                 'is_sold' => false,
-                'user_id' => $dummyUser->id,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'categories' => [2], // 家電
             ],
             [
                 'name' => 'マイク',
@@ -106,9 +76,7 @@ class ItemsTableSeeder extends Seeder
                 'product_condition' => 2,
                 'image' => 'items/Mic.jpg',
                 'is_sold' => false,
-                'user_id' => $dummyUser->id,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'categories' => [2], // 家電
             ],
             [
                 'name' => 'ショルダーバッグ',
@@ -118,9 +86,7 @@ class ItemsTableSeeder extends Seeder
                 'product_condition' => 3,
                 'image' => 'items/Bag.jpg',
                 'is_sold' => true,
-                'user_id' => $dummyUser->id,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'categories' => [1, 4], // ファッション, レディース
             ],
             [
                 'name' => 'タンブラー',
@@ -130,9 +96,7 @@ class ItemsTableSeeder extends Seeder
                 'product_condition' => 4,
                 'image' => 'items/Tumbler.jpg',
                 'is_sold' => false,
-                'user_id' => $dummyUser->id,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'categories' => [10], // キッチン
             ],
             [
                 'name' => 'コーヒーミル',
@@ -142,9 +106,7 @@ class ItemsTableSeeder extends Seeder
                 'product_condition' => 1,
                 'image' => 'items/CoffeeMill.jpg',
                 'is_sold' => false,
-                'user_id' => $dummyUser->id,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'categories' => [10, 11], // キッチン, ハンドメイド
             ],
             [
                 'name' => 'メイクセット',
@@ -154,10 +116,32 @@ class ItemsTableSeeder extends Seeder
                 'product_condition' => 2,
                 'image' => 'items/Makeup.jpg',
                 'is_sold' => false,
+                'categories' => [6], // コスメ
+            ],
+        ];
+
+        foreach ($items as $item) {
+            $itemId = DB::table('items')->insertGetId([
+                'name' => $item['name'],
+                'brand_name' => $item['brand_name'],
+                'detail' => $item['detail'],
+                'price' => $item['price'],
+                'product_condition' => $item['product_condition'],
+                'image' => $item['image'],
+                'is_sold' => $item['is_sold'],
                 'user_id' => $dummyUser->id,
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],
-        ]);
+            ]);
+
+            foreach ($item['categories'] as $categoryId) {
+                DB::table('category_item')->insert([
+                    'item_id' => $itemId,
+                    'category_id' => $categoryId,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+        }
     }
 }

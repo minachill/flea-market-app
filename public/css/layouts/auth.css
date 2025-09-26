@@ -13,6 +13,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    min-height: 80px;
 }
 
 .site-header__logo img {
@@ -34,6 +35,7 @@ body {
         justify-content: space-between;
         align-items: center;
         padding: 13px 16px;
+        min-height: 40px;
     }
 
     .site-header__logo img {

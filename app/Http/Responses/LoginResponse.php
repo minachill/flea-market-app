@@ -10,15 +10,17 @@ class LoginResponse implements LoginResponseContract
     {
         $user = $request->user();
 
-        // 初回ログインならプロフィール設定画面にリダイレクト
-        if ($user->is_first_login) {
-            $user->is_first_login = false;
-            $user->save();
-
-            return redirect()->route('profile.setup');
+        // ✅ 未認証ならメール認証誘導画面へ
+        if (! $user->hasVerifiedEmail()) {
+            return redirect()->route('verification.notice');
         }
 
-        // 通常のログイン時はデフォルト画面へ
-        return redirect()->intended('/');
+        // ✅ プロフィール未設定ならプロフィール設定画面へ
+        if (! $user->is_profile_set) {
+            return redirect()->route('mypage.edit');
+        }
+
+        // ✅ 通常は商品一覧へ
+        return redirect()->route('items.index');
     }
 }

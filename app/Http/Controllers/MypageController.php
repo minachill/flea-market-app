@@ -38,35 +38,43 @@ class MypageController extends Controller
     public function update(ProfileRequest $request)
     {
         $user = Auth::user();
+        $user->update($request->validated());
 
         // プロフィール画像アップロード
         if ($request->hasFile('profile_image')) {
             $path = $request->file('profile_image')->store('profile_images', 'public');
             $user->image = $path;
-            $user->save();
         }
 
-        // ユーザー情報更新
-        $user->name = $request->name;
+        $isFirstSetup = ! $user->is_profile_set;
+        // ✅ プロフィール設定済みに更新
+        $user->is_profile_set = true;
         $user->save();
 
-        $address = Address::where('user_id', $user->id)->first();
-
-        if ($address) {
-            // 既存レコードを更新
-            $address->update([
+        // ✅ 住所：初回は新規作成、2回目以降は更新
+        Address::updateOrCreate(
+            ['user_id' => $user->id],
+            [
                 'postal_code' => $request->postal_code,
                 'address'     => $request->address,
                 'building'    => $request->building,
-            ]);
+            ]
+        );
+
+    // ✅ 初回更新 → 商品一覧
+        if ($isFirstSetup) {
+            return redirect()->route('items.index');
         }
 
+        // ✅ 2回目以降 → マイページ
         return redirect()->route('mypage.index');
     }
 
     public function edit()
     {
-        $user = Auth::user();
+        $user = Auth::user()->load('address');
+
+
         return view('mypage.edit', compact('user'));
     }
 }

@@ -46,12 +46,13 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-weight: bold;
 }
 
 /* 会員登録はこちら */
 .login-page__register-link {
     text-align: center;
-    margin-top: 15px;
+    margin-top: 40px;
 }
 
 .login-page__register-link a {
@@ -93,6 +94,9 @@
     .login-form__submit {
         font-size: 18px;
         padding: 10px;
+    }
+    .login-page__register-link {
+        margin-top: 20px;
     }
 
     .login-page__register-link a {

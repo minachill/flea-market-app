@@ -87,19 +87,27 @@
                     </div>
                     <div class="item-detail__comment-body">{{ $comment->comment }}</div>
                 @endforeach
-                @auth
-                    <form method="POST" action="{{ route('comment.store', $item->id) }}" class="item-detail__comment-form">
+                    <form method="POST" action="{{ route('comment.store', $item->id) }}"  class="item-detail__comment-form">
                         @csrf
                         <label for="comment" class="item-detail__comment-form-title">商品へのコメント</label>
                         <textarea class="item-detail__comment-form-input" name="comment" id="comment">{{ old('comment') }}</textarea>
                         @error('comment')
                             <div class="item-detail__comment-form-error">{{ $message }}</div>
                         @enderror
-                        <button type="submit" class="item-detail__comment-form-button" @guest disabled @endguest>コメントを送信する</button>
+
+                        @auth
+                            <button type="submit" class="item-detail__comment-form-button">
+                                コメントを送信する
+                            </button>
+                        @endauth
+
+                        @guest
+                            <a href="{{ route('login') }}" class="item-detail__form-button">
+                                コメントを送信する
+                            </a>
+                        @endguest
                     </form>
-                @endauth
             </section>
-            {{-- 👆 @guest disabled @endguestで、未ログインユーザーはコメント送信ができない仕様、要確認‼️--}}
         </div>
     </div>
 </main>

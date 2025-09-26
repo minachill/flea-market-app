@@ -13,16 +13,16 @@ class ItemController extends Controller
 {
     public function index(Request $request)
     {
-        $keyword = $request->input('keyword');
-        Item::withCount('likedUsers')->get();
+        $keyword = $request->query('keyword');
+        $tab = $request->query('tab');
 
-        if ($request->tab === 'mylist') {
+        if ($tab === 'mylist') {
             if (!Auth::check()) {
                 return redirect()->route('login');
             }
 
         // マイリスト（ログイン済み）＋検索
-            $query = Auth::user()->likedItems()->orderBy('created_at', 'desc');
+            $query = Auth::user()->likedItems()->orderByPivot('created_at', 'desc');
 
             if (!empty($keyword)) {
                 $query->where('name', 'like', '%' . $keyword . '%');

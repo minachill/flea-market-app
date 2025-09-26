@@ -65,7 +65,7 @@ class Item extends Model
     // カテゴリとのリレーション：多対多（中間テーブル category_item）
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'category_item');
+        return $this->belongsToMany(Category::class, 'category_item')->withTimestamps();
     }
 
     public function getConditionTextAttribute(): string

@@ -13,6 +13,6 @@ class Category extends Model
     // 1つのカテゴリは複数の商品を持つ（多対多）
     public function items()
     {
-        return $this->belongsToMany(Item::class, 'category_item');
+        return $this->belongsToMany(Item::class, 'category_item')->withTimestamps();
     }
 }
