@@ -26,10 +26,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/item/{item}/like', [LikeController::class, 'toggle'])->name('item.like');
     // 購入関係
     Route::get('/purchase/{item}', [PurchaseController::class, 'show'])->name('purchase.show');
+    Route::post('/purchase/{item}', [PurchaseController::class, 'store'])->name('purchase.store');
     Route::get('/purchase/address/{item}', [PurchaseController::class, 'editAddress'])->name('purchase.address.edit');
     Route::post('/purchase/address/{item}', [PurchaseController::class, 'updateAddress'])->name('purchase.address.update');
+    // テスト互換ルート（/purchase/{id}/address も叩けるようにする）
+    Route::post('/purchase/{item}/address', [PurchaseController::class, 'updateAddress']);
+    // 支払い方法の小計反映
     Route::post('/purchase/{item}/checkout', [PurchaseController::class, 'checkout'])->name('purchase.checkout');
-    Route::get('/purchase/{item}/success', [PurchaseController::class, 'success'])->name('purchase.success');
 
     // 出品
     Route::get('/sell', [ItemController::class, 'create'])->name('items.create');

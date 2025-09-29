@@ -8,11 +8,11 @@
 
 @section('content')
     <main class="purchase">
-        <form action="{{ route('purchase.checkout', $item->id) }}" method="POST">
+        <form action="{{ route('purchase.store', $item->id) }}" method="POST">
             @csrf
 
             <div class="purchase__container">
-            <!-- 左側：商品情報エリア -->
+            <!-- 左側：商品情報 -->
                 <section class="purchase__left">
                     <div class="purchase__item">
                         <div class="purchase__item-image">
@@ -32,15 +32,13 @@
                         <h3 class="purchase__section-title">支払い方法</h3>
                         <div class="purchase__select-wrapper">
                             <select class="purchase__select" name="payment_method" id="payment_method">
-                                <option value="" selected hidden>選択してください</option>
-                                <option value="convenience" >コンビニ払い</option>
-                                <option value="credit">カード払い</option>
+                                <option value="convenience" {{ in_array(session('payment_method'), [null,'convenience','konbini']) ? 'selected' : '' }}>コンビニ払い</option>
+                                <option value="credit" {{ in_array(session('payment_method'), ['credit','card']) ? 'selected' : '' }}>カード払い</option>
                             </select>
                             @error('payment_method')
                                 <p class="purchase__error">{{ $message }}</p>
                             @enderror
                         </div>
-
                     </div>
 
                 <!-- 配送先 -->
@@ -60,12 +58,12 @@
                                     {{ $user->address->address }} {{ $user->address->building }}
                                 </p>
                             @endif
-                            <a href={{ route('purchase.address.edit', $item->id) }} class="purchase__address-edit">変更する</a>
+                            <a href="{{ route('purchase.address.edit', $item->id) }}" class="purchase__address-edit">変更する</a>
                         </div>
                     </div>
                 </section>
 
-            <!-- 右側：購入情報エリア -->
+            <!-- 右側：購入情報 -->
                 <div class="purchase__right">
                     <div class="purchase__summary">
                         <div class="purchase__summary-row">
@@ -80,7 +78,14 @@
                         <div class="purchase__summary-row">
                             <div class="purchase__summary-content">
                                 <span class="purchase__summary-label">支払い方法</span>
-                                <span class="purchase__summary-value" id="summary_payment">コンビニ払い</span>
+                                <span class="purchase__summary-value" id="summary_payment">
+                                    @php $pm = session('payment_method'); @endphp
+                                    @if(in_array($pm, ['credit','card']))
+                                        カード払い
+                                    @else
+                                        コンビニ払い
+                                    @endif
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -89,23 +94,16 @@
             </div>
         </form>
     </main>
-{{-- 支払い方法→サマリーを即時反映 --}}
+        {{-- JSで即時反映 --}}
     <script>
-    (function() {
-        const select = document.getElementById('payment_method');
+    document.getElementById('payment_method').addEventListener('change', function() {
+        const selected = this.value;
         const summary = document.getElementById('summary_payment');
-        if (!select || !summary) return;
-
-        const update = () => {
-            if (select.value) {
-                summary.textContent = select.options[select.selectedIndex].text;
-            } else {
-                summary.textContent = "コンビニ払い"; // 初期値
-            }
-        };
-
-        update(); // ページ読み込み時に初期反映
-        select.addEventListener('change', update);
-    })();
+        if (selected === 'credit' || selected === 'card') {
+            summary.textContent = 'カード払い';
+        } else {
+            summary.textContent = 'コンビニ払い';
+        }
+    });
     </script>
 @endsection

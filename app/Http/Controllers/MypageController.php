@@ -22,9 +22,8 @@ class MypageController extends Controller
         $exhibitedItems = $user->items()->latest()->get();
 
         // 購入した商品
-        $purchasedItems = Item::whereIn('id', $user->purchases()->pluck('item_id'))
-                            ->latest()
-                            ->get();
+        // 購入した商品（Purchaseごと渡す）
+        $purchasedItems = $user->purchases()->with('item')->latest()->get();
 
         return view('mypage.mypage', [
             'user' => $user,

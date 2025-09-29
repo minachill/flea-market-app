@@ -22,7 +22,6 @@ class VerifyEmailResponse implements VerifyEmailResponseContract
             return redirect()->route('mypage.edit');
         }
 
-        // 通常は商品一覧へ
         return redirect()->route('items.index');
     }
 }

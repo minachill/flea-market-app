@@ -40,7 +40,7 @@
 
             @guest
                 <a class="site-header__btn-nav" href="{{ route('login') }}" >ログイン</a>
-                <a class="site-header__btn-nav" href="{{ route('register') }}" >マイページ</a>
+                <a class="site-header__btn-nav" href="{{ route('login') }}" >マイページ</a>
                 <a class="site-header__btn-sell" href="{{ route('login') }}" >出品</a>
             @endguest
         </div>

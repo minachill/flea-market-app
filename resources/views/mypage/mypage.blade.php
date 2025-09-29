@@ -44,12 +44,12 @@
                 </div>
             @endforeach
         @elseif($page === 'buy')
-            @foreach($purchasedItems as $item)
+            @foreach($purchasedItems as $purchase)
                 <div class="profile__item">
                     <div class="profile__item-image">
-                        <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}">
+                        <img src="{{ asset('storage/' . $purchase->item->image) }}" alt="{{ $purchase->item->name}}">
                     </div>
-                    <p class="profile__item-name">{{ $item->name }}</p>
+                    <p class="profile__item-name">{{ $purchase->item->name }}</p>
                 </div>
             @endforeach
         @endif

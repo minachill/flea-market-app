@@ -38,7 +38,7 @@
                     <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" class="item-card__image">
 
                 {{-- 購入済みならSoldを表示 --}}
-                    @if($item->is_sold)
+                    @if($item->purchases()->exists())
                         <div class="item-card__sold-label">Sold</div>
                     @endif
                 </div>
