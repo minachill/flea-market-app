@@ -55,7 +55,7 @@ php artisan storage:link
 
 ## ER図
 ---
-<img width="757" height="991" alt="ER図" src="https://github.com/user-attachments/assets/e9134a29-f4c8-4237-9e28-f4f9956b9966" />
+<img width="743" height="1028" alt="ER図" src="https://github.com/user-attachments/assets/780ace96-12dd-4cb7-80a8-063048c97b97" />
 
 ## 開発環境
 ---
