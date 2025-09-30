@@ -1,0 +1,192 @@
+/* コンテナ */
+.profile-edit {
+    max-width: 730px;
+    margin: 0 auto;
+    padding: 48px 40px 64px;
+}
+
+/* 見出し（中央） */
+.profile-edit__title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 28px;
+}
+
+/* フォーム */
+.profile-edit__form {
+    display: flex;
+    flex-direction: column;
+    /* gap: 22px; */
+}
+
+/* アバターエリア */
+.profile-edit__avatar {
+    display: flex;
+    align-items: flex-start;
+    gap: 0px;
+    margin: 10px 0 40px 0;
+}
+/* ボタンとエラーを縦並びに */
+.profile-edit__avatar-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-left: 20px;
+}
+
+/* エラー表示 */
+.profile-edit__error-image {
+    color: red;
+    font-size: 16px;
+    margin: 0;
+    margin-left: 20px;
+    min-height: 36px;
+    /* エラーがなくても高さを確保して崩れ防止 */
+}
+.profile-edit__avatar-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    position: relative;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: #D9D9D9;
+    justify-content: center;
+}
+
+.profile-edit__avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #5F5F5F;
+}
+
+.profile-edit__avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+.profile-edit__avatar-img--hidden {
+    display: none;
+}
+
+/* 画像選択ボタン（赤のアウトライン） */
+.profile-edit__file-input {
+    display: none;
+}
+
+.profile-edit__image-button {
+    appearance: none;
+    width: fit-content;
+    border: 2px solid #FF5555;
+    color: #FF5555;
+    background: #fff;
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 40px 20px 0 20px;
+    font-weight: bold;
+}
+
+
+/* 入力群 */
+.profile-edit__group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.profile-edit__label {
+    font-weight: 700;
+    font-size: 24px;
+    margin: 8px;
+}
+
+.profile-edit__input {
+    height: 48px;
+    padding: 12px 12px;
+    border: 1px solid #5F5F5F;
+    border-radius: 4px;
+    font-size: 22px;
+    font-weight: 600;
+
+}
+
+.profile-edit__error {
+    color: red;
+    font-size: 16px;
+    margin: 0;
+    min-height: 26px;
+
+}
+
+/* アクション */
+.profile-edit__actions {
+    margin-top: 6px;
+}
+
+.profile-edit__submit {
+    width: 100%;
+    height: 60px;
+    border: none;
+    border-radius: 5px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #fff;
+    background: #FF5555;
+    cursor: pointer;
+    margin: 36px 0 0;
+}
+
+/* ========= Tablet 768–850px ========= */
+@media (max-width: 850px) and (min-width: 768px) {
+    .profile-edit {
+        max-width: 580px;
+        padding: 40px 24px 56px;
+    }
+
+    .profile-edit__title {
+        font-size: 26px;
+    }
+
+    .profile-edit__avatar-circle {
+        width: 110px;
+        height: 110px;
+    }
+    .profile-edit__image-button {
+        font-size: 16px;
+        padding: 8px 16px;
+        margin: auto 10px;
+    }
+
+        .profile-edit__label {
+        font-size: 18px;
+    }
+
+    .profile-edit__input {
+        font-size: 18px;
+        height: 42px;
+    }
+
+    .profile-edit__submit {
+        height: 46px;
+        font-size: 20px;
+    }
+
+    .profile-edit__error,
+    .profile-edit__error-image {
+        font-size: 14px;
+        min-height: 20px;
+    }
+
+    .profile-edit__image-button {
+        margin: 30px 10px 0 10px;
+    }
+}
