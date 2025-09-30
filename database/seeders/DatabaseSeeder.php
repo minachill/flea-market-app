@@ -18,7 +18,9 @@ class DatabaseSeeder extends Seeder
             AddressesTableSeeder::class,
             CategoriesTableSeeder::class,
             ItemsTableSeeder::class,
+            PurchasesTableSeeder::class,
             CommentsTableSeeder::class,
+            LikesTableSeeder::class,
         ]);
     }
 }

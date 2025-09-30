@@ -13,17 +13,16 @@ class ProfileTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    // プロフィールページで必要な情報が表示される
+
     public function test_it_displays_user_info()
     {
     $user = User::factory()->create([
         'name' => 'テスト太郎',
         'email_verified_at' => now(),
-        'profile_image_path' => 'profile_images/test_profile.png', // プロフィール画像を持たせる
+        'profile_image_path' => 'profile_images/test_profile.png',
     ]);
 
-        // 出品商品と購入商品を作成
+
         $exhibitedItem = Item::factory()->create([
             'user_id' => $user->id,
             'name' => '出品商品',
@@ -41,13 +40,12 @@ class ProfileTest extends TestCase
                 ->assertSee($exhibitedItem->name)
                 ->assertDontSee($purchasedItem->name);
 
-    // 購入商品タブ
+
         $responseBuy = $this->actingAs($user)->get('/profile?page=buy');
         $responseBuy->assertSee($purchasedItem->name);
     }
 
-    /** @test */
-    // プロフィール編集画面に初期値が表示される
+
     public function test_it_displays_user_edit_form_with_initial_values()
     {
         $user = User::factory()->create([

@@ -14,13 +14,13 @@ class Comment extends Model
 
     protected $fillable = ['user_id', 'item_id', 'comment'];
 
-    // コメントは1人のユーザーに属する（投稿者）
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // コメントは1つの商品に属する
+
     public function item()
     {
         return $this->belongsTo(Item::class);

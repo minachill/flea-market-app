@@ -16,7 +16,7 @@ class LikesTableSeeder extends Seeder
      */
     public function run()
     {
-        // 一般ユーザー & 管理者ユーザーを取得
+
         $generalUser = User::where('email', 'user2@example.com')->first();
         $adminUser   = User::where('email', 'dummy@example.com')->first();
 
@@ -24,7 +24,6 @@ class LikesTableSeeder extends Seeder
         $item2 = Item::skip(1)->first();
 
         if ($item2) {
-            // 一般ユーザーがいいね
             if ($generalUser) {
                 Like::firstOrCreate([
                     'user_id' => $generalUser->id,
@@ -32,7 +31,6 @@ class LikesTableSeeder extends Seeder
                 ]);
             }
 
-            // 管理者ユーザーがいいね
             if ($adminUser) {
                 Like::firstOrCreate([
                     'user_id' => $adminUser->id,

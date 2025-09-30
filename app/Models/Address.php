@@ -18,13 +18,12 @@ class Address extends Model
         'building',
     ];
 
-    // ユーザーとのリレーション（1人のユーザーが複数の住所を持つ）
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // 購入とのリレーション（1つの住所が複数の購入に使われる可能性がある）
+
     public function purchase()
     {
         return $this->hasMany(Purchase::class);

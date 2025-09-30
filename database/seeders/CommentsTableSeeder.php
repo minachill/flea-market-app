@@ -16,17 +16,26 @@ class CommentsTableSeeder extends Seeder
      */
     public function run()
     {
-        // admin ユーザーを取得（または新規作成した後に取得）
         $adminUser = User::where('email', 'dummy@example.com')->first();
+        $generalUser = User::where('email', 'user2@example.com')->first();
 
-        // 商品を1つ取得（コメント先の商品）
-        $item = Item::where('name', '腕時計')->first();// ←最初のItemでOK（もしくはランダムでもOK）
+        $item = Item::where('name', '腕時計')->first();
+        $item2 = Item::skip(1)->first();
 
         if ($adminUser && $item) {
             Comment::create([
                 'user_id' => $adminUser->id,
                 'item_id' => $item->id,
                 'comment' => 'こちらにコメントが入ります。',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+        if ($generalUser && $item2) {
+            Comment::create([
+                'user_id' => $generalUser->id,
+                'item_id' => $item2->id,
+                'comment' => '一般ユーザーからのコメントです。',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

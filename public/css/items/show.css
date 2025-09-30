@@ -147,7 +147,6 @@
 .item-detail__section-row {
     display: flex;
     align-items: center;
-        /* 上揃え */
     margin: 8px 0;
 }
 
@@ -204,7 +203,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* 画像が丸にフィットする */
 }
 
 .item-detail__comment-user-name {
@@ -243,7 +241,6 @@
     border-radius: 5px;
     font-size: 25px;
     margin-bottom: 10px;
-    /* resize: both !important; */
 }
 
 .item-detail__comment-form-button {
@@ -346,14 +343,12 @@
         font-size: 14px;
     }
 
-    /* 購入ボタン */
     .item-detail__purchase-button {
         width: 100%;
         font-size: 18px;
         padding: 6px 10px;
     }
 
-    /* セクション（説明・情報・コメント） */
     .item-detail__section {
         margin-top: 30px;
     }
@@ -372,7 +367,7 @@
         margin-bottom: 0px;
     }
 
-    /* カテゴリタグ */
+
     .item-detail__section-row {
         flex-direction: row;
         align-items: flex-start;

@@ -69,7 +69,7 @@
 
             <div class="sell-form__field">
                 <label class="sell-form__label">ブランド名</label>
-                <input type="text" name="brand" class="sell-form__input" value="{{ old('brand') }}">
+                <input type="text" name="brand_name" class="sell-form__input" value="{{ old('brand_name') }}">
             </div>
 
             <div class="sell-form__field">
@@ -82,7 +82,7 @@
                 <label class="sell-form__label">販売価格</label>
                 <div class="sell-form__price">
                     <span class="sell-form__price-symbol">¥</span>
-                    <input type="number" name="price" class="sell-form__input" value="{{ old('price') }}">
+                    <input type="text" name="price" class="sell-form__input" value="{{ old('price') }}">
                 </div>
                 @error('price') <p class="sell-form__error">{{ $message }}</p> @enderror
             </div>

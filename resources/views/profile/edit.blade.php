@@ -26,7 +26,6 @@
             @endif
         </div>
 
-    <!-- ボタン＋エラーを縦に -->
         <div class="profile-edit__avatar-actions">
             <label for="profile_image" class="profile-edit__image-button">
                 画像を選択する

@@ -11,8 +11,7 @@ use Tests\TestCase;
 class ItemIndexTest extends TestCase
 {
     use RefreshDatabase;
-        /** @test */
-        // 全商品が表示される
+
     public function test_it_displays_all_items()
     {
         $items = Item::factory()->count(3)->create();
@@ -24,8 +23,7 @@ class ItemIndexTest extends TestCase
         }
     }
 
-    /** @test */
-    // ゲストユーザーでも一覧が見られる
+
     public function test_it_displays_item_list_for_guest_users()
     {
         $item = Item::factory()->create([
@@ -38,8 +36,7 @@ class ItemIndexTest extends TestCase
                 ->assertSee('テスト商品');
     }
 
-    /** @test */
-    // 購入済みの商品に「Sold」ラベルが出る
+
     public function test_it_displays_sold_label_for_purchased_items()
     {
         $user = User::factory()->create();
@@ -55,8 +52,6 @@ class ItemIndexTest extends TestCase
                 ->assertSee('売れた商品');
     }
 
-    /** @test */
-    // ログイン済みユーザーでも一覧が見られる
     public function test_it_shows_items_for_authenticated_users()
     {
         $user = User::factory()->create(['email_verified_at' => now()]);
@@ -68,7 +63,7 @@ class ItemIndexTest extends TestCase
                 ->assertSee('ログイン済ユーザー商品');
     }
 
-    // 自分が出品した商品は表示されない
+
         public function test_it_does_not_display_items_created_by_authenticated_user()
     {
         $user = User::factory()->create(['email_verified_at' => now()]);

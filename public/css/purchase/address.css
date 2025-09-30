@@ -6,7 +6,6 @@
     background-color: #fff;
 }
 
-/* ===== タイトル ===== */
 .address__title {
     font-size: 36px;
     font-weight: bold;
@@ -14,13 +13,11 @@
     margin-bottom: 50px;
 }
 
-/* ===== フォーム ===== */
 .address__form {
     display: flex;
     flex-direction: column;
 }
 
-/* ===== グループ ===== */
 .address__group {
     display: flex;
     flex-direction: column;
@@ -51,7 +48,6 @@
     min-height: 28px;
 }
 
-/* ===== ボタン ===== */
 .address__actions {
     text-align: center;
     margin-top: 40px;

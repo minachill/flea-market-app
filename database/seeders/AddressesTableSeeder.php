@@ -31,7 +31,7 @@ class AddressesTableSeeder extends Seeder
         if ($user2) {
             DB::table('addresses')->insert([
                 'user_id' => $user2->id,
-                'postal_code' => 'XXX-YYYY',
+                'postal_code' => '123-4567',
                 'address'     => 'ここには住所と',
                 'building'    => '建物が入ります',
                 'created_at' => now(),

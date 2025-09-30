@@ -14,7 +14,7 @@ class PurchasesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        // ユーザーと商品を取得
+
         $user = User::where('email', 'user2@example.com')->first();
 
         $item = Item::where('is_sold', false)->skip(1)->first();
@@ -29,7 +29,6 @@ class PurchasesTableSeeder extends Seeder
                 'payment_method' => 'card',
             ]);
 
-            // Item 側も is_sold = true に更新
             $item->update(['is_sold' => true]);
         }
     }

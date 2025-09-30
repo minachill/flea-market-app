@@ -21,7 +21,6 @@
             {{-- 検索フォーム --}}
         <form action="{{ route('items.index') }}" method="GET" class="site-header__search-form">
             <input type="text" name="keyword" value="{{ request('keyword') }}" placeholder="なにをお探しですか？">
-            {{-- tab が選択されているときは hidden で保持 --}}
             @if(request('tab'))
                 <input type="hidden" name="tab" value="{{ request('tab') }}">
             @endif
@@ -34,7 +33,7 @@
                     @csrf
                     <button type="submit" class="site-header__btn-nav">ログアウト</button>
                 </form>
-                <a class="site-header__btn-nav" href="/mypage" >マイページ</a>
+                <a class="site-header__btn-nav" href="/profile" >マイページ</a>
                 <a class="site-header__btn-sell" href="/sell" >出品</a>
             @endauth
 

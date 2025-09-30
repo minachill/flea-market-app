@@ -19,19 +19,16 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-        // 1人のユーザーは複数の商品を出品できる
         public function items()
         {
             return $this->hasMany(Item::class);
         }
 
-        // 1人のユーザーは複数のコメントを投稿できる
         public function comments()
         {
             return $this->hasMany(Comment::class);
         }
 
-        // 1人のユーザーは複数の商品に「いいね」できる
         public function likes()
         {
             return $this->hasMany(Like::class);
@@ -42,13 +39,12 @@ class User extends Authenticatable implements MustVerifyEmail
             return $this->belongsToMany(Item::class, 'likes')->withTimestamps();
         }
 
-        // 1人のユーザーは複数の購入履歴を持つ
         public function purchases()
         {
             return $this->hasMany(Purchase::class);
         }
 
-        // 1人のユーザーは複数の住所を登録できる
+
         public function address()
         {
             return $this->hasOne(Address::class);

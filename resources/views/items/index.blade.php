@@ -11,23 +11,16 @@
 
     {{-- タブメニュー --}}
     <div class="item-index__tab-menu">
-        <a href="{{ route('items.index', array_merge(request()->all(), ['tab' => 'recommend'])) }}"
-            class="item-index__tab {{ $viewType === 'recommend' ? 'item-index__tab--active' : '' }}">
-            おすすめ
-        </a>
-        @auth
-        {{-- ログイン時 --}}
-            <a href="{{ route('items.index', array_merge(request()->all(), ['tab' => 'mylist'])) }}"
-                class="item-index__tab {{ $viewType === 'mylist' ? 'item-index__tab--active' : '' }}">
-                マイリスト
-            </a>
-        @endauth
+    <a href="{{ route('items.index', array_merge(request()->all(), ['tab' => 'recommend'])) }}"
+        class="item-index__tab {{ $viewType === 'recommend' ? 'item-index__tab--active' : '' }}">
+        おすすめ
+    </a>
 
-        @guest
-        {{-- 未ログイン時はログイン画面に遷移 --}}
-            <a href="{{ route('login') }}" class="item-index__tab">マイリスト</a>
-        @endguest
-    </div>
+    <a href="{{ route('items.index', array_merge(request()->all(), ['tab' => 'mylist'])) }}"
+        class="item-index__tab {{ $viewType === 'mylist' ? 'item-index__tab--active' : '' }}">
+        マイリスト
+    </a>
+</div>
 
     {{-- 商品カードの一覧 --}}
     <div class="item-list">
@@ -36,9 +29,7 @@
             {{-- 商品画像 + Soldラベル --}}
                 <div class="item-card__image-wrapper">
                     <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" class="item-card__image">
-
-                {{-- 購入済みならSoldを表示 --}}
-                    @if($item->purchases()->exists())
+                    @if($item->purchase()->exists())
                         <div class="item-card__sold-label">Sold</div>
                     @endif
                 </div>

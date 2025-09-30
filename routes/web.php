@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\PurchaseController;
-use App\Http\Controllers\MypageController;
+use App\Http\Controllers\profileController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 /*
@@ -29,20 +29,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/purchase/{item}', [PurchaseController::class, 'store'])->name('purchase.store');
     Route::get('/purchase/address/{item}', [PurchaseController::class, 'editAddress'])->name('purchase.address.edit');
     Route::post('/purchase/address/{item}', [PurchaseController::class, 'updateAddress'])->name('purchase.address.update');
-    // テスト互換ルート（/purchase/{id}/address も叩けるようにする）
     Route::post('/purchase/{item}/address', [PurchaseController::class, 'updateAddress']);
-    // 支払い方法の小計反映
     Route::post('/purchase/{item}/checkout', [PurchaseController::class, 'checkout'])->name('purchase.checkout');
-
     // 出品
     Route::get('/sell', [ItemController::class, 'create'])->name('items.create');
     Route::post('/sell', [ItemController::class, 'store'])->name('items.store');
-
     // プロフィール画面
-    Route::get('/mypage', [MypageController::class, 'index'])->name('mypage.index');
-    Route::get('/mypage/edit', [MypageController::class, 'edit'])->name('mypage.edit');
-    Route::post('/mypage/edit', [MypageController::class, 'update'])->name('mypage.update');
-    Route::get('/mypage?page=buy', [MypageController::class, 'purchased'])->name('mypage.purchased');
-    Route::get('/mypage?page=sell', [MypageController::class, 'exhibited'])->name('mypage.exhibited');
+    Route::get('/profile', [profileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/edit', [profileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile/edit', [profileController::class, 'update'])->name('profile.update');
+    Route::get('/profile?page=buy', [profileController::class, 'purchased'])->name('profile.purchased');
+    Route::get('/profile?page=sell', [profileController::class, 'exhibited'])->name('profile.exhibited');
 });
 

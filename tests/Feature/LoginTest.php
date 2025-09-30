@@ -10,7 +10,6 @@ class LoginTest extends TestCase
 {
     use RefreshDatabase;
 
-        /** @test */
     public function test_it_requires_email_to_login()
     {
         $response = $this->post('/login', [
@@ -23,7 +22,6 @@ class LoginTest extends TestCase
         ]);
     }
 
-    /** @test */
     public function test_it_requires_password_to_login()
     {
         $response = $this->post('/login', [
@@ -35,8 +33,7 @@ class LoginTest extends TestCase
             'password' => 'パスワードを入力してください',
         ]);
     }
-    /** @test */
-    // メールアドレス、パスワード未入力 → エラーメッセージ
+
     public function test_it_requires_email_and_password()
     {
         $response = $this->post('/login', [
@@ -50,8 +47,6 @@ class LoginTest extends TestCase
         ]);
     }
 
-    /** @test */
-    	// 入力情報が間違っている → エラーメッセージ
     public function test_it_rejects_invalid_credentials()
     {
         $user = User::factory()->create([
@@ -68,8 +63,7 @@ class LoginTest extends TestCase
         ]);
     }
 
-    /** @test */
-    // 正しい情報ならログイン成功（商品一覧へリダイレクト）※未認証ユーザーなら /email/verify へリダイレクト
+
     public function test_it_redirects_unverified_user_to_verification_notice()
     {
         $user = User::factory()->unverified()->create([
@@ -84,8 +78,6 @@ class LoginTest extends TestCase
         $response->assertRedirect('/email/verify');
     }
 
-    /** @test */
-    // 初回ログイン → プロフィール編集画面
     public function test_it_redirects_first_time_login_to_profile_edit()
     {
         $user = User::factory()->create([
@@ -99,11 +91,10 @@ class LoginTest extends TestCase
             'password' => 'password123',
         ]);
 
-        $response->assertRedirect('/mypage/edit');
+        $response->assertRedirect('/profile/edit');
     }
 
-    /** @test */
-    // 認証済み・プロフィール設定済み → 商品一覧
+
     public function test_it_redirects_verified_user_with_profile_to_items_index()
     {
         $user = User::factory()->create([

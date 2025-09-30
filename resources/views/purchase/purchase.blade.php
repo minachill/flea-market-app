@@ -32,8 +32,9 @@
                         <h3 class="purchase__section-title">支払い方法</h3>
                         <div class="purchase__select-wrapper">
                             <select class="purchase__select" name="payment_method" id="payment_method">
-                                <option value="convenience" {{ in_array(session('payment_method'), [null,'convenience','konbini']) ? 'selected' : '' }}>コンビニ払い</option>
-                                <option value="credit" {{ in_array(session('payment_method'), ['credit','card']) ? 'selected' : '' }}>カード払い</option>
+                                <option value=""  {{ old('payment_method', session('payment_method')) === null ? 'selected' : '' }}>選択してください</option>
+                                <option value="convenience" {{ old('payment_method', session('payment_method')) === 'convenience' ? 'selected' : '' }}>コンビニ払い</option>
+                                <option value="credit" {{ old('payment_method', session('payment_method')) === 'credit' ? 'selected' : '' }}>カード払い</option>
                             </select>
                             @error('payment_method')
                                 <p class="purchase__error">{{ $message }}</p>
@@ -94,7 +95,6 @@
             </div>
         </form>
     </main>
-        {{-- JSで即時反映 --}}
     <script>
     document.getElementById('payment_method').addEventListener('change', function() {
         const selected = this.value;

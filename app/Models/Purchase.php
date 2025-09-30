@@ -20,19 +20,16 @@ class Purchase extends Model
         'shipping_building',
     ];
 
-    // この購入はどのユーザーによるものか
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // この購入はどの商品に対するものか
     public function item()
     {
         return $this->belongsTo(Item::class);
     }
 
-    // この購入にはどの住所が使われたか
     public function address()
     {
         return $this->belongsTo(Address::class);

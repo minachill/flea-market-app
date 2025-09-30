@@ -22,7 +22,7 @@ class RegisterTest extends TestCase
         ]);
     }
 
-    /** @test */
+
     public function test_it_requires_an_email()
     {
         $response = $this->post('/register', [
@@ -37,7 +37,7 @@ class RegisterTest extends TestCase
         ]);
     }
 
-    /** @test */
+
     public function test_it_requires_a_valid_email_format()
     {
         $response = $this->post('/register', [
@@ -52,7 +52,7 @@ class RegisterTest extends TestCase
         ]);
     }
 
-    /** @test */
+
     public function test_it_requires_a_password()
     {
         $response = $this->post('/register', [
@@ -67,7 +67,7 @@ class RegisterTest extends TestCase
         ]);
     }
 
-    /** @test */
+
     public function test_it_requires_a_password_with_minimum_length()
     {
         $response = $this->post('/register', [
@@ -82,7 +82,6 @@ class RegisterTest extends TestCase
         ]);
     }
 
-    /** @test */
     public function test_it_requires_password_confirmation_to_match()
     {
         $response = $this->post('/register', [
@@ -97,7 +96,7 @@ class RegisterTest extends TestCase
         ]);
     }
 
-    /** @test */
+
     public function test_it_redirects_to_profile_edit_when_registration_is_successful()
     {
         $response = $this->post('/register', [

@@ -52,7 +52,6 @@
     transition: all 0.2s ease;
 }
 
-/* タブ部分 */
 .profile__tabs {
     display: flex;
     gap: 20px;
@@ -78,7 +77,6 @@
     color: #FF0000;
 }
 
-/* 商品一覧 */
 .profile__items {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

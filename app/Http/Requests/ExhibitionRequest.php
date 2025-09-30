@@ -24,12 +24,12 @@ class ExhibitionRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'        => 'required|string|max:255',              // 商品名：必須
-            'description' => 'required|string|max:255',              // 商品説明：必須、255文字以内
-            'image'       => 'required|mimes:jpeg,png',        // 商品画像：必須、jpeg/pngのみ
-            'categories'  => 'required|min:1',                 // カテゴリ：必須、複数選択OK
-            'condition'   => 'required|integer|min:1|max:4',         // 商品状態：必須、1〜4の数値
-            'price'       => 'required|integer|min:0',               // 価格：必須、整数、0円以上
+            'name'        => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'image'       => 'required|mimes:jpeg,png',
+            'categories'  => 'required|min:1',
+            'condition'   => 'required|integer|min:1|max:4',
+            'price'       => 'required|integer|min:0',
         ];
     }
 

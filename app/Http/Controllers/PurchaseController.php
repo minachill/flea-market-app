@@ -9,18 +9,17 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PurchaseRequest;
 use App\Http\Requests\AddressRequest;
 use Stripe\Stripe;
-use Stripe\Checkout\Session;
+use Stripe\Checkout\Session as StripeSession;
 
 class PurchaseController extends Controller
 {
     public function show(Item $item)
     {
-        $user = auth()->user(); // ログイン中のユーザー
-        $payment = session('payment_method', 'convenience');
+        $user = auth()->user();
+        $payment = session('payment_method');
         return view('purchase.purchase', compact('item', 'user', 'payment'));
     }
 
-    // 支払い方法をセッションに保存 → 小計に反映
     public function checkout(Request $request, Item $item)
     {
 
@@ -60,7 +59,6 @@ public function store(Request $request, Item $item)
         return back()->withErrors(['error' => 'この商品はすでに購入されています。']);
     }
 
-    // 支払い方法の正規化
     $inputMethod = $request->input('payment_method', session('payment_method', 'convenience'));
     $method = match ($inputMethod) {
         'credit', 'card' => 'card',
@@ -68,12 +66,12 @@ public function store(Request $request, Item $item)
         default => 'convenience',
     };
 
-    // 住所をセッション→リクエスト→ユーザーのプロフィール住所の順で取得
+
     $postal   = session('shipping_postal')   ?? $request->shipping_postal   ?? $user->address->postal_code;
     $address  = session('shipping_address')  ?? $request->shipping_address  ?? $user->address->address;
     $building = session('shipping_building') ?? $request->shipping_building ?? $user->address->building;
 
-    // 購入記録を保存
+
     Purchase::create([
         'user_id'          => $user->id,
         'item_id'          => $item->id,
@@ -85,10 +83,8 @@ public function store(Request $request, Item $item)
 
     $item->update(['is_sold' => true]);
 
-    // セッション消去
     session()->forget(['shipping_postal', 'shipping_address', 'shipping_building']);
 
-    // Stripe遷移（テスト環境ではフェイクURL）
     if (app()->environment('testing')) {
         return redirect('https://checkout.stripe.com/test_session');
     }

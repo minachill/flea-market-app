@@ -17,9 +17,8 @@ class VerifyEmailResponse implements VerifyEmailResponseContract
     {
         $user = Auth::user();
 
-        // プロフィール未設定ならプロフィール編集画面へ
         if (! $user->is_profile_set) {
-            return redirect()->route('mypage.edit');
+            return redirect()->route('profile.edit');
         }
 
         return redirect()->route('items.index');

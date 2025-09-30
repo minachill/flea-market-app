@@ -15,7 +15,8 @@ class ItemsTableSeeder extends Seeder
      */
     public function run()
     {
-        $dummyUser = User::where('email', 'dummy@example.com')->first();
+        $user1 = User::where('email', 'dummy@example.com')->first();
+        $user2 = User::where('email', 'user2@example.com')->first();
 
         $items = [
             [
@@ -45,8 +46,9 @@ class ItemsTableSeeder extends Seeder
                 'price' => 300,
                 'product_condition' => 3,
                 'image' => 'items/Onion.jpg',
-                'is_sold' => true,
+                'is_sold' => false,
                 'categories' => [10], // キッチン
+                'owner' => 'user2',
             ],
             [
                 'name' => '革靴',
@@ -85,7 +87,7 @@ class ItemsTableSeeder extends Seeder
                 'price' => 3500,
                 'product_condition' => 3,
                 'image' => 'items/Bag.jpg',
-                'is_sold' => true,
+                'is_sold' => false,
                 'categories' => [1, 4], // ファッション, レディース
             ],
             [
@@ -120,7 +122,11 @@ class ItemsTableSeeder extends Seeder
             ],
         ];
 
-        foreach ($items as $item) {
+        foreach ($items as $index => $item) {
+            $ownerId = isset($item['owner']) && $item['owner'] === 'user2'
+                ? $user2->id
+                : $user1->id;
+
             $itemId = DB::table('items')->insertGetId([
                 'name' => $item['name'],
                 'brand_name' => $item['brand_name'],
@@ -129,7 +135,7 @@ class ItemsTableSeeder extends Seeder
                 'product_condition' => $item['product_condition'],
                 'image' => $item['image'],
                 'is_sold' => $item['is_sold'],
-                'user_id' => $dummyUser->id,
+                'user_id' => $ownerId,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
